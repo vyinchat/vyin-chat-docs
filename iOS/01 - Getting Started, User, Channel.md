@@ -363,36 +363,36 @@ With the Chat SDK, you can retrieve users in a channel, moderate user activity, 
 
 | Functionality | Description | Open channel | Group channel |
 | :---- | :---- | :---- | :---- |
-| Retrieve a list of users in an application | Retrieves a list of all or a specified subset of users in a Vyin Chat application. | x | x |
-| Retrieve a list of users in a channel | Retrieves a list of users in a channel. | x | x |
-| Retrieve a list of users and operators in a specific order | Retrieves a list of users and operators in a channel in an alphabetical order or by another specified order. |  | x |
-| Retrieve users who have read a message | Retrieves users who have read a specific message in a channel. |  | x |
-| Retrieve a list of operators | Retrieves a list of operators who monitor and control the activities in a channel. | x | x |
+| Retrieve a list of users in an application | Retrieves a list of all or a specified subset of users in a Vyin Chat application. | ✓ | ✓ |
+| Retrieve a list of users in a channel | Retrieves a list of users in a channel. | ✓ | ✓ |
+| Retrieve a list of users and operators in a specific order | Retrieves a list of users and operators in a channel in an alphabetical order or by another specified order. |  | ✓ |
+| Retrieve users who have read a message | Retrieves users who have read a specific message in a channel. |  | ✓ |
+| Retrieve a list of operators | Retrieves a list of operators who monitor and control the activities in a channel. | ✓ | ✓ |
 
 #### Moderating a user
 
 | Functionality | Description | Open channel | Group channel |
 | :---- | :---- | :---- | :---- |
-| Retrieve a list of blocked users | Retrieves a list of all or a specified subset of blocked users in a Vyin Chat application. |  | x |
-| Retrieve a list of banned users | Retrieves a list of users who are banned from a channel. | x | x |
-| Retrieve a list of muted users | Retrieves a list of users who are muted in a channel. | x | x |
-| Block and unblock other users | Blocks or unblocks specified users for a user in a channel. |  | x |
-| Ban and unban a user | Operators can ban or unban users from a channel. Banned users are immediately expelled from a channel and allowed to participate in the channel again after the time period set by the operators has passed. | x | x |
-| Mute and unmute a user | Operators can mute or unmute users in a channel. Muted users remain in the channel and are allowed to view the messages, but can't send any messages until the operators unmute them. | x | x |
+| Retrieve a list of blocked users | Retrieves a list of all or a specified subset of blocked users in a Vyin Chat application. |  | ✓ |
+| Retrieve a list of banned users | Retrieves a list of users who are banned from a channel. | ✓ | ✓ |
+| Retrieve a list of muted users | Retrieves a list of users who are muted in a channel. | ✓ | ✓ |
+| Block and unblock other users | Blocks or unblocks specified users for a user in a channel. |  | ✓ |
+| Ban and unban a user | Operators can ban or unban users from a channel. Banned users are immediately expelled from a channel and allowed to participate in the channel again after the time period set by the operators has passed. | ✓ | ✓ |
+| Mute and unmute a user | Operators can mute or unmute users in a channel. Muted users remain in the channel and are allowed to view the messages, but can't send any messages until the operators unmute them. | ✓ | ✓ |
 
 #### Retrieving and updating user information
 
 | Functionality | Description | Open channel | Group channel |
 | :---- | :---- | :---- | :---- |
-| Retrieve the online status of a user | Checks if a certain user in a Vyin Chat application is currently connected to the Vyin Chat server. | x | x |
-| Update user profile | Updates a user's nickname and profile image with a URL. | x | x |
-| Retrieve the latest information on users | Retrieves the latest and updated information on each user who is online. | x |  |
+| Retrieve the online status of a user | Checks if a certain user in a Vyin Chat application is currently connected to the Vyin Chat server. | ✓ | ✓ |
+| Update user profile | Updates a user's nickname and profile image with a URL. | ✓ | ✓ |
+| Retrieve the latest information on users | Retrieves the latest and updated information on each user who is online. | ✓ |  |
 
 #### Managing user metadata
 
 | Functionality | Description | Open channel | Group channel |
 | :---- | :---- | :---- | :---- |
-| Manage user metadata | Stores additional information to users. You can create, retrieve, update and delete additional information. | x | x |
+| Manage user metadata | Stores additional information to users. You can create, retrieve, update and delete additional information. | ✓ | ✓ |
 
 ## Retrieving users
 
