@@ -345,7 +345,7 @@ Depending on the type of channel your users are chatting in, they are given diff
 | :---- | :---- | :---- |
 | `User` | Application | Refers to a user who can access all the chat features of a Vyin Chat application with their own unique ID but doesn't have any administrative privileges. |
 | `Participant` | Open channels | Refers to a specific user who has entered an open channel without an invitation and is remaining online in the channel. Open channel participants are provided with limited information only. These participants can enter and exit the channel at all times. |
-| `Member` | Group channels | Refers to a specific user who has joined a group channel through an invitation from a channel member or on their own. Relational information such as connection status, typing indicators, and read receipts is only available to the group channel members depending on the channel settings. |
+| `Member` | Group channels | Refers to a specific user who has joined a group channel through an invitation from a channel member or on their own. Relational information such as connection status, typing indicators, and read receipts is only available to the group channel members depending on the channel settings. |
 
 #### Operator
 
@@ -688,7 +688,7 @@ The following table explains what happens to a user's chat experience when the u
 
 | Channel type | Channel list | Notifications | Messages |
 | :---- | :---- | :---- | :---- |
-| 1-to-1 group channel | A user's channel list isn't updated in response to the blocked user's messages. | A user can't receive notifications for the messages from the blocked user. | A user can only see the messages that the blocked user has sent before being blocked. Even though messages sent from the blocked user aren't delivered to the channel, they are saved in the database and only displayed in the blocked user's channel view. This means that the blocked user isn't aware of their blocked status.\* If the blocked user is unblocked, a user can see all the messages from the blocked user except those that were sent during the blocking period. |
+| 1-to-1 group channel | A user's channel list isn't updated in response to the blocked user's messages. | A user can't receive notifications for the messages from the blocked user. | A user can only see the messages that the blocked user has sent before being blocked. Even though messages sent from the blocked user aren't delivered to the channel, they are saved in the database and only displayed in the blocked user's channel view. This means that the blocked user isn't aware of their blocked status.\* If the blocked user is unblocked, a user can see all the messages from the blocked user except those that were sent during the blocking period. |
 | 1-to-N group channel | A user's channel list is updated in response to a blocked user's message. | By default, a user can't receive message notifications from a blocked user. If the option is turned on, the user can receive message notifications from the blocked user. | All messages from blocked users are delivered to the channel. You can choose whether or not a user can view the messages from the blocked users in the channel UI. |
 
 ### How to use block modes
@@ -1103,9 +1103,9 @@ Choose which channel type to use based on key factors such as the duration of a 
 
 | Type | Used for |
 | :---- | :---- |
-| `Open channel` | \- Short-lived live events, such as concerts and streaming.\- News-feed type messaging to massive audience, such as Twitter-style feed.\- Events that don't require a permanent membership. |
-| `Group channel` | \- Private 1-on-1 conversations, such as clinical consultations and Instagram-style Direct Messages.\- Public 1-to-N conversations, such as small group discussions among students.\- Invitation-only chats with a handful group of users. |
-| `Supergroup channel` | \- Ask-me-anything type events with a large number of users.\- Midsize conferences for regular updates, such as company-wide meetings. |
+| `Open channel` | \- Short-lived live events, such as concerts and streaming.\- News-feed type messaging to massive audience, such as Twitter-style feed.\- Events that don't require a permanent membership. |
+| `Group channel` | \- Private 1-on-1 conversations, such as clinical consultations and Instagram-style Direct Messages.\- Public 1-to-N conversations, such as small group discussions among students.\- Invitation-only chats with a handful group of users. |
+| `Supergroup channel` | \- Ask-me-anything type events with a large number of users.\- Midsize conferences for regular updates, such as company-wide meetings. |
 
 #### Comparison of channel types
 
@@ -1133,10 +1133,10 @@ The following table compares the difference among two types of channels.
 | Spam flood protection | [Supported](?tab=t.6hp8x6tlxcog) | [Supported](?tab=t.6hp8x6tlxcog) | [Supported](?tab=t.6hp8x6tlxcog) |
 | Chatbot interface | Supported | Supported | Supported |
 | Smart throttling | [Supported](?tab=t.42cxg3b710ft) (Default: `true`) | [Supported](?tab=t.42cxg3b710ft) (Default: `false`) | [Supported](?tab=t.42cxg3b710ft) (Default: `false`) |
-| Push notifications | N/A\* Push notifications for announcements only. | [Supported](?tab=t.z7a614ntsbtt)   \* Push notifications for every message sent. | [Supported](?tab=t.z7a614ntsbtt)   \* Refer to [Limitations](#limitations). |
-| Get a channel with its participant list or member list | N/A | Supported | Supported\* Only ten members are retrieved as a preview.To get an entire list of members, use the list members API instead. |
+| Push notifications | N/A\* Push notifications for announcements only. | [Supported](?tab=t.z7a614ntsbtt)   \* Push notifications for every message sent. | [Supported](?tab=t.z7a614ntsbtt)   \* Refer to [Limitations](#limitations). |
+| Get a channel with its participant list or member list | N/A | Supported | Supported\* Only ten members are retrieved as a preview.To get an entire list of members, use the list members API instead. |
 | Pagination for participant list or member list | [Supported]() | [Supported]() | [Supported]() |
-| Order of channel list | \- Chronological | \- Chronological\- Latest last message\- Channel name\- Metadata value | \- Chronological\- Latest last message\- Channel name\- Metadata value |
+| Order of channel list | \- Chronological | \- Chronological\- Latest last message\- Channel name\- Metadata value | \- Chronological\- Latest last message\- Channel name\- Metadata value |
 
 ---
 
@@ -1299,7 +1299,7 @@ This table only contains properties shown in the code above. See the API referen
 | `name` | String | Specifies the name of the channel. |
 | `coverUrl` | String | Specifies the cover image URL of the channel. |
 | `userIds` | array String | Specifies a list of one or more IDs of the users to invite to the channel. |
-| `isDistinct` | Bool | Determines whether to reuse an existing channel or create a new channel. Setting this property to `true` returns a channel with the same users in `USER_IDS` or creates a new channel if no match is found. If set to `false`, the Vyin Chat server always creates a new channel with the specified combination of users as well as the channel custom type.\* You can also use this property in conjunction with `CUSTOM_TYPE` and `USER_IDS` to create distinct channels for a specified channel custom type and a set of specified users. In order to enable the functionality, visit this page and contact us on Vyin Chat Dashboard. |
+| `isDistinct` | Bool | Determines whether to reuse an existing channel or create a new channel. Setting this property to `true` returns a channel with the same users in `USER_IDS` or creates a new channel if no match is found. If set to `false`, the Vyin Chat server always creates a new channel with the specified combination of users as well as the channel custom type.\* You can also use this property in conjunction with `CUSTOM_TYPE` and `USER_IDS` to create distinct channels for a specified channel custom type and a set of specified users. In order to enable the functionality, visit this page and contact us on Vyin Chat Dashboard. |
 | `customType` | String | Specifies the custom channel type which is used for channel grouping. |
 
 Note: You can also use the Chat API to create open channels and group channels. For group channels, using the Chat API helps you control channel member invitations on your server side.  
@@ -1315,7 +1315,7 @@ Because the [distinct](?tab=t.gygp5bj64m3o) option isn't available for Supergrou
 ```swift
 let params = GroupChannelCreateParams()
 ```
-[`params.name`](http://params.name) `= name`
+`params.name` `= name`
 
 ```swift
 GroupChannel.createChannel(params: params) { channel, e in

@@ -186,8 +186,8 @@ Several real-time events taking place in client apps are rate-limited in order t
 | :---- | :---- |
 | Sending a message | 5 |
 | Marking messages as read | 3 |
-| Sending typing indicator to other members\* The limit applies to both users and channels. | 0.1 |
-| Other events\* These include sending a file message, editing a message, or marking messages as delivered. | 3 |
+| Sending typing indicator to other members\* The limit applies to both users and channels. | 0.1 |
+| Other events\* These include sending a file message, editing a message, or marking messages as delivered. | 3 |
 
 ---
 
@@ -197,7 +197,7 @@ When a request is rate-limited, a `RATE_LIMIT_EXCEEDED (500910)` or `TOO_MANY_ME
 
 ## Event handler
 
-Vyin Chat's Chat SDK for iOS provides three types of event handlers for client apps: [channel event handlers](https://docs.google.com/document/d/1ayQXi7kCV2XvaQxAHNdHEoJAeqjlZMifb6cLL-RL9VY/edit?tab=t.ihxhjtpz6j4i), [user event handlers](https://docs.google.com/document/d/1ayQXi7kCV2XvaQxAHNdHEoJAeqjlZMifb6cLL-RL9VY/edit?tab=t.utui93oukgde), and [connection event handlers](https://docs.google.com/document/d/1ayQXi7kCV2XvaQxAHNdHEoJAeqjlZMifb6cLL-RL9VY/edit?tab=t.mldhqqw7q4r5). Through the channel event handlers and user event handlers, the Vyin Chat server notifies client apps in the foreground of events that are happening in channels and with users. Through the connection event handler, the Vyin Chat server detects changes in the connection status of a client app. When the client app is disconnected from the server, the SDK tries to reconnect to the server and notifies the client app of the result through the connection event handler.
+Vyin Chat's Chat SDK for iOS provides three types of event handlers for client apps: channel event handlers, user event handlers, and connection event handlers. Through the channel event handlers and user event handlers, the Vyin Chat server notifies client apps in the foreground of events that are happening in channels and with users. Through the connection event handler, the Vyin Chat server detects changes in the connection status of a client app. When the client app is disconnected from the server, the SDK tries to reconnect to the server and notifies the client app of the result through the connection event handler.
 
 The Chat SDK communicates with our server through persistent WebSocket connections and multi-thread processing, receiving callbacks of asynchronous channel, user, and connection events through event handlers in real-time. This interaction enables you to track the events you desire and implement your own chat features associated with those events.  
 
@@ -211,19 +211,19 @@ The following is a list of event handler functionalities that our Chat SDK provi
 
 | Functionality | Description | Open channel | Group channel |
 | :---- | :---- | :---- | :---- |
-| [Add or remove a channel event handler](https://docs.google.com/document/d/1ayQXi7kCV2XvaQxAHNdHEoJAeqjlZMifb6cLL-RL9VY/edit?tab=t.ihxhjtpz6j4i) | Adds or removes an event handler that receives information about events happening in channels from the Vyin Chat server. |  |  |
+| Add or remove a channel event handler | Adds or removes an event handler that receives information about events happening in channels from the Vyin Chat server. |  |  |
 
 #### Managing a user event handler
 
 | Functionality | Description | Open channel | Group channel |
 | :---- | :---- | :---- | :---- |
-| [Add or remove a user event handler](https://docs.google.com/document/d/1ayQXi7kCV2XvaQxAHNdHEoJAeqjlZMifb6cLL-RL9VY/edit?tab=t.utui93oukgde) | Adds or removes an event handler that receives information about events related to users connected to the Vyin Chat server. |  |  |
+| Add or remove a user event handler | Adds or removes an event handler that receives information about events related to users connected to the Vyin Chat server. |  |  |
 
 #### Managing a connection event handler
 
 | Functionality | Description | Open channel | Group channel |
 | :---- | :---- | :---- | :---- |
-| [Add or remove a connection event handler](https://docs.google.com/document/d/1ayQXi7kCV2XvaQxAHNdHEoJAeqjlZMifb6cLL-RL9VY/edit?tab=t.mldhqqw7q4r5) | Adds or removes an event handler that receives information about changes related to the Vyin Chat server connection status. |  |  |
+| Add or remove a connection event handler | Adds or removes an event handler that receives information about changes related to the Vyin Chat server connection status. |  |  |
 
 ## Managing channel event handlers
 
@@ -274,7 +274,7 @@ If you want to stay informed of changes related to channels and notify other use
 | func channel(\_ channel: BaseChannel, messageWasDeleted messageId: Int64) | A message has been deleted in a group channel. | All devices where client apps with the channel are in the foreground, including the device where the message was deleted. |
 | func channel(\_ channel: BaseChannel, didReceiveMention message: BaseMessage) | A user has been mentioned in a message sent in a group channel. | All devices of mentioned users (up to 10\) in the channel, except the device that was used to mention other users. |
 | func channelWasChanged(\_ channel: BaseChannel) | A message reaction has been updated in a group channel. | All devices where client apps with the channel are in the foreground, including the device that reacted to the message. |
-| func channelWasChanged(\_ channel: BaseChannel) | One of the following group channel properties has been changed: distinct, push notification preferences, last message (except when the silent [admin message](https://docs.google.com/document/d/1ayQXi7kCV2XvaQxAHNdHEoJAeqjlZMifb6cLL-RL9VY/edit?tab=t.85218wb6pcuu)), unread message count, name, cover image, data, or custom type. | All devices that are connected to the changed channel, including the device where the channel was changed. |
+| func channelWasChanged(\_ channel: BaseChannel) | One of the following group channel properties has been changed: distinct, push notification preferences, last message (except when the silent admin message), unread message count, name, cover image, data, or custom type. | All devices that are connected to the changed channel, including the device where the channel was changed. |
 | func channelWasDeleted(\_ channelURL: String, channelType: ChannelType) | A group channel has been deleted. | All devices where client apps with the channel are in the foreground, including the device where the channel was deleted. |
 | public func channelWasFrozen(\_ channel: BaseChannel) | A group channel has been frozen. | All devices where client apps with the channel are in the foreground, including the device where the channel was frozen. |
 | public func channelWasUnfrozen(\_ channel: BaseChannel) | A group channel has been unfrozen. | All devices where client apps with the channel are in the foreground, including the device where the channel was unfrozen. |
@@ -692,7 +692,7 @@ To find out which type of push notification best fits your use case, see the fol
 |  | General push notifications | Push notifications with multi-device support |
 | :---- | :---- | :---- |
 | Sent when | All devices are offline. | At least one device is offline. |
-| Notification messages | Single-device user: Displayed when disconnected from the Vyin Chat server and thus offline.Multi-device user: Displayed only when all devices are offline. | Single-device user: Displayed when disconnected from the Vyin Chat server and thus offline.Multi-device user: Displayed on all offline devices, regardless of whether one or more are online. |
+| Notification messages | Single-device user: Displayed when disconnected from the Vyin Chat server and thus offline.Multi-device user: Displayed only when all devices are offline. | Single-device user: Displayed when disconnected from the Vyin Chat server and thus offline.Multi-device user: Displayed on all offline devices, regardless of whether one or more are online. |
 | SDK's event callback | Invoked only when the app is connected to the Vyin Chat server. | Invoked only when the app is connected to the Vyin Chat server. |
 | App instance's registration token | Can be manually registered to the Vyin Chat server. | Automatically registered to the Vyin Chat server. |
 | Notification preferences | Can be set by application and group channel. | N/A |
@@ -1067,7 +1067,7 @@ See the following table for the usage of content templates.
 
 |  | Text message | File message |
 | :---- | :---- | :---- |
-| Default template | {sender\_name}: {message}An example can be `Cindy: Hi!` | {filename}An example can be `hello_world.jpg` |
+| Default template | {sender\_name}: {message}An example can be `Cindy: Hi!` | {filename}An example can be `hello_world.jpg` |
 | Alternative template | `New message arrived` | `New file arrived` |
 
 To apply a template to push notifications, use the `setPushTemplate()` method. Specify the type of the template with the name as either `GIMChat.PUSH_TEMPLATE_DEFAULT` or `GIMChat.PUSH_TEMPLATE_ALTERNATIVE`.  
@@ -1807,9 +1807,9 @@ The following table shows possible cases where each event handler can be called.
 
 | Event | Called when |
 | :---- | :---- |
-| `func channelCollection(_ collection: GroupChannelCollection, context: ChannelContext, addedChannels: [GroupChannel])` | \- A new group channel is created as a real-time event.\- New group channels are fetched through changelog sync. |
-| `func channelCollection(_ collection: GroupChannelCollection, context: ChannelContext, updatedChannels: [GroupChannel])` | \- The channel information that is included in the user's current chat view is updated as a real-time event.\- Updated channel information is fetched through changelog sync. |
-| `func channelCollection(_ collection: GroupChannelCollection, context: ChannelContext, deletedChannelURLs: [String])` | \- A group channel is deleted as a real-time event.\- A channel deletion event is fetched through changelog sync. |
+| `func channelCollection(_ collection: GroupChannelCollection, context: ChannelContext, addedChannels: [GroupChannel])` | \- A new group channel is created as a real-time event.\- New group channels are fetched through changelog sync. |
+| `func channelCollection(_ collection: GroupChannelCollection, context: ChannelContext, updatedChannels: [GroupChannel])` | \- The channel information that is included in the user's current chat view is updated as a real-time event.\- Updated channel information is fetched through changelog sync. |
+| `func channelCollection(_ collection: GroupChannelCollection, context: ChannelContext, deletedChannelURLs: [String])` | \- A group channel is deleted as a real-time event.\- A channel deletion event is fetched through changelog sync. |
 
 ```swift
 let collection: GroupChannelCollection = GIMChat.createGroupChannelCollection(query: query)
@@ -1925,11 +1925,11 @@ The following table shows possible cases where each event handler can be called.
 
 | Handler | Called when |
 | :---- | :---- |
-| `func messageCollection(_ collection: MessageCollection, context: MessageContext, channel: GroupChannel, addedMessages: [BaseMessage])` | \- A new message is created as a real-time event.\- New messages are fetched during changelog sync. |
-| `func messageCollection(_ collection: MessageCollection, context: MessageContext, channel: GroupChannel, deletedMessages: [BaseMessage])` | \- A message is deleted as a real-time event.\- Message deletion is detected during changelog sync.\- The value of the `MessageListParams` setter such as `custom_type` changes. |
-| `func messageCollection(_ collection: MessageCollection, context: MessageContext, channel: GroupChannel, updatedMessages: [BaseMessage])` | \- A message is updated as a real-time event.\- Message update is detected during changelog sync.\- The send status of a pending message changes. |
-| `func messageCollection(_ collection: MessageCollection, context: MessageContext, updatedChannel: GroupChannel)` | \- The channel information that is included in the user's current chat view is updated as a real-time event.\- Channel info update is detected during changelog sync. |
-| `func messageCollection(_ collection: MessageCollection, context: MessageContext, deletedChannel channelURL: String)` | \- The current channel is deleted as a real-time event.\- Channel deletion is detected during changelog sync.\* In both cases, the entire view should be disposed of. |
+| `func messageCollection(_ collection: MessageCollection, context: MessageContext, channel: GroupChannel, addedMessages: [BaseMessage])` | \- A new message is created as a real-time event.\- New messages are fetched during changelog sync. |
+| `func messageCollection(_ collection: MessageCollection, context: MessageContext, channel: GroupChannel, deletedMessages: [BaseMessage])` | \- A message is deleted as a real-time event.\- Message deletion is detected during changelog sync.\- The value of the `MessageListParams` setter such as `custom_type` changes. |
+| `func messageCollection(_ collection: MessageCollection, context: MessageContext, channel: GroupChannel, updatedMessages: [BaseMessage])` | \- A message is updated as a real-time event.\- Message update is detected during changelog sync.\- The send status of a pending message changes. |
+| `func messageCollection(_ collection: MessageCollection, context: MessageContext, updatedChannel: GroupChannel)` | \- The channel information that is included in the user's current chat view is updated as a real-time event.\- Channel info update is detected during changelog sync. |
+| `func messageCollection(_ collection: MessageCollection, context: MessageContext, deletedChannel channelURL: String)` | \- The current channel is deleted as a real-time event.\- Channel deletion is detected during changelog sync.\* In both cases, the entire view should be disposed of. |
 | `func didDetectHugeGap(_ collection: MessageCollection)` | \- A huge gap is detected through background sync. In this case, you need to dispose of the view and create a new `MessageCollection` instance. |
 
 ```swift
@@ -2031,78 +2031,78 @@ The following errors are six-digit integers beginning with 400, 500, and 900\.
 
 | Code | Description |
 | :---- | :---- |
-| `400100(bad request)` | UNEXPECTED\_PARAMETER\_TYPEThe request specifies one or more parameters in an unexpected data type. The data type of the parameters should be `String`. |
-| `400101(bad request)` | UNEXPECTED\_PARAMETER\_TYPEThe request specifies one or more parameters in an unexpected data type. The data type of the parameters should be `number`. |
-| `400102(bad request)` | UNEXPECTED\_PARAMETER\_TYPEThe request specifies one or more parameters in an unexpected data type. The data type of the parameters should be `list`. |
-| `400103(bad request)` | UNEXPECTED\_PARAMETER\_TYPEThe request specifies one or more parameters in an unexpected data type. The data type of the parameters should be `JSON`. |
-| `400104(bad request)` | UNEXPECTED\_PARAMETER\_TYPEThe request specifies one or more parameters in an unexpected data type. The data type of the parameters should be `Bool`. |
-| `400105(bad request)` | MISSING\_REQUIRED\_PARAMETERSThe request is missing one or more required parameters. |
-| `400106(bad request)` | NEGATIVE\_NUMBER\_NOT\_ALLOWEDThe parameter specifies a negative number. Its value should be a positive number. |
-| `400108(bad request)` | UNAUTHORIZED\_REQUESTThe request isn't authorized and can't access the requested resource. |
-| `400109(bad request)` | EXPIRED\_PAGE\_TOKENThe value of the `token` parameter for pagination has expired. |
-| `400110(bad request)` | PARAMETER\_VALUE\_LENGTH\_EXCEEDEDThe length of the parameter value is too long. |
-| `400111(bad request)` | INVALID\_VALUEThe request specifies an invalid value. |
-| `400112(bad request)` | INCOMPATIBLE\_VALUESThe two parameters of the request, which should have unique values, specify the same value. |
-| `400113(bad request)` | PARAMETER\_VALUE\_OUT\_OF\_RANGEThe request specifies one or more parameters which are outside the allowed value range. |
-| `400114(bad request)` | INVALID\_URL\_OF\_RESOURCEThe resource identified with the URL in the request can't be found. |
-| `400151(bad request)` | NOT\_ALLOWED\_CHARACTERThe request specifies an illegal value containing special character, empty String, or white space. |
-| `400201(bad request)` | RESOURCE\_NOT\_FOUNDThe resource identified with the request's `resourceId` parameter can't be found. |
-| `400202(bad request)` | RESOURCE\_ALREADY\_EXISTSThe resource identified with the request's `resourceId` parameter already exists. |
-| `400203(bad request)` | TOO\_MANY\_ITEMS\_IN\_PARAMETERThe parameter specifies more items than allowed. |
-| `400300(bad request)` | DEACTIVATED\_USER\_NOT\_ACCESSIBLEThe request can't retrieve the deactivated user data. |
-| `400301(bad request)` | USER\_NOT\_FOUNDThe user identified with the request's `USER_ID` can't be found because either the user doesn't exist or has been deleted. |
-| `400302(bad request)` | INVALID\_ACCESS\_TOKENThe access token provided for the request specifies an invalid value. |
-| `400303(bad request)` | INVALID\_SESSION\_KEY\_VALUEThe session key provided for the request specifies an invalid value. |
-| `400304(bad request)` | APPLICATION\_NOT\_FOUNDThe application identified with the request can't be found. |
-| `400305(bad request)` | USER\_ID\_LENGTH\_EXCEEDEDThe length of the `USER_ID` is too long. |
-| `400306(bad request)` | PAID\_QUOTA\_EXCEEDEDThe request can't be completed because you have exceeded your paid quota. |
-| `400307(bad request)` | DOMAIN\_NOT\_ALLOWEDThe request can't be completed because it came from the restricted domain. |
-| `400401(bad request)` | INVALID\_API\_TOKENThe API token provided for the request specifies an invalid value. |
-| `400402(bad request)` | MISSING\_SOME\_PARAMETERSThe request is missing one or more necessary parameters. |
-| `400403(bad request)` | INVALID\_JSON\_REQUEST\_BODYThe request body is an invalid JSON. |
-| `400404(bad request)` | INVALID\_REQUEST\_URLThe request specifies an invalid HTTP request URL that can't be accessed. |
-| `400500(bad request)` | TOO\_MANY\_USER\_WEBSOCKET\_CONNECTIONSThe number of the user's websocket connections exceeds the allowed amount. |
-| `400501(bad request)` | TOO\_MANY\_APPLICATION\_WEBSOCKET\_CONNECTIONSThe number of the application's websocket connections exceeds the allowed amount. |
-| `400700(bad request)` | BLOCKED\_USER.SEND\_MESSAGE\_NOT\_ALLOWEDThe request can't be completed due to one of the following reasons: The sender is blocked by the recipient or has been deactivated, the message is longer than the maximum message length, or the message contains texts or URLs blocked by application settings or filters. |
-| `400701(bad request)` | BLOCKED\_USER.INVITED\_NOT\_ALLOWEDThe request can't be completed because the blocking user is trying to invite the blocked user to a channel. |
-| `400702(bad request)` | BLOCKED\_USER.INVITE\_NOT\_ALLOWEDThe request can't be completed because the blocked user is trying to invite the blocking user to a channel. |
-| `400750(bad request)` | BANNED\_USER.ENTER\_CHANNEL\_NOT\_ALLOWEDThe request can't be completed because the user is banned from a channel they're trying to enter. |
-| `400751(bad request)` | BANNED\_USER.ENTER\_CUSTOM\_CHANNEL\_NOT\_ALLOWEDThe request can't be completed because the user is banned from a custom channel they're trying to enter. |
-| `400920(bad request)` | UNACCEPTABLEThe request failed because the combination of parameter values is invalid. Even if each parameter value is valid, a combination of parameter values becomes invalid when it doesn't follow specific conditions.READ\_ONLY\_MODEWhen the application is in the read-only mode, can't complete API requests except for `GET`.NOT\_ACCESSIBLEThe request `DELETE` fails when the corresponding message has a child message. |
-| `400930(bad request)` | INVALID\_ENDPOINTThe request failed because it is sent to an invalid endpoint that no longer exists. |
-| `403100(forbidden)` | APPLICATION\_NOT\_AVAILABLEThe application identified with the request isn't available. |
-| `500601(internal server error)` | INTERNAL\_ERROR.PUSH\_TOKEN\_NOT\_REGISTEREDThe server encounters an error while trying to register the user's push token. |
-| `500602(internal server error)` | INTERNAL\_ERROR.PUSH\_TOKEN\_NOT\_UNREGISTEREDThe server encounters an error while trying to unregister the user's push token. |
-| `500901(internal server error)` | INTERNAL\_ERRORThe server encounters an unexpected exception while trying to process the request. |
-| `500910(too many request)` | RATE\_LIMIT\_EXCEEDEDThe request can't be completed because you have exceeded your rate limits. |
-| `503(service unavailable)` | SERVICE\_UNAVAILABLEThe request failed due to a temporary failure of the server. |
-| `900010(request failed)` | USER\_LOGIN\_REQUIREDThe request failed because the user isn't logged in to the server. |
-| `900020(request failed)` | USER\_NOT\_MEMBERThe request failed because the user isn't a member of the channel. |
-| `900021(request failed)` | USER\_DEACTIVATEDThe request failed because the user is deactivated. |
-| `900022(request failed)` | USER\_NOT\_OWNER\_OF\_MESSAGEThe request failed because the user has no permission to edit the other user's message. |
-| `900023(request failed)` | PENDING\_USER\_SEND\_MESSAGE\_NOT\_ALLOWEDThe request failed because the user is trying to send the messages in the channel of which they are not the member. |
-| `900025(request failed)` | INVALID\_MENTION\_FOR\_MESSAGEThe specified mention type in the request is invalid. |
-| `900026(request failed)` | INVALID\_PUSH\_OPTION\_FOR\_MESSAGEThe specified push option in the request is invalid. |
-| `900027(request failed)` | TOO\_MANY\_META\_KEY\_FOR\_MESSAGEThe request failed because it specifies more meta data keys for the message than allowed. |
-| `900028(request failed)` | TOO\_MANY\_META\_VALUE\_FOR\_MESSAGEThe request failed because it specifies more meta data values for the message than allowed. |
-| `900029(request failed)` | INVALID\_META\_ARRAY\_FOR\_MESSAGEThe request failed because it specifies an invalid value in the meta data for the message. |
-| `900030(request failed)` | GUEST\_NOT\_ALLOWEDThe request failed because the guest isn't allowed to perform this operation. |
-| `900040(request failed)` | MUTED\_USER\_IN\_APPLICATION\_SEND\_MESSAGE\_NOT\_ALLOWEDThe request failed because the user is muted in the application and isn't allowed to send the message. |
-| `900041(request failed)` | MUTED\_USER\_IN\_CHANNEL\_SEND\_MESSAGE\_NOT\_ALLOWEDThe request failed because the user is muted in the channel and isn't allowed to send the message. |
-| `900050(request failed)` | CHANNEL\_FROZENThe request failed because the channel is frozen and no one can send the message to the channel. |
-| `900060(request failed)` | PROFANITY\_MESSAGE\_BLOCKEDThe request failed because it specifies the message containing a profanity word. |
-| `900061(request failed)` | BANNED\_URLS\_BLOCKEDThe request failed because it specifies the message containing a URL that isn't allowed. |
-| `900065(request failed)` | RESTRICTED\_DOMAIN\_BLOCKEDThe request failed because it comes from the domain that isn't allowed. |
-| `900066(request failed)` | MODERATED\_FILE\_BLOCKEDThe request failed because it contains the file violating at least one of the content management policies. |
-| `900070(request failed)` | ENTER\_DELETED\_CHANNELThe request failed because the user is trying to enter a deleted channel. |
-| `900080(request failed)` | BLOCKED\_USER\_RECEIVE\_MESSAGE\_NOT\_ALLOWEDThe request failed because the blocking user is trying to send the message to the blocked user in a 1-to-1 distinct channel. |
-| `900081(request failed)` | DEACTIVATED\_USER\_RECEIVE\_MESSAGE\_NOT\_ALLOWEDThe request failed because the user is trying to send the message to the deactivated user in a 1-to-1 distinct channel. |
-| `900090(request failed)` | WRONG\_CHANNEL\_TYPEThe request failed because it specifies a wrong channel type. |
-| `900100(request failed)` | BANNED\_USER\_SEND\_MESSAGE\_NOT\_ALLOWEDThe request failed because the user is banned from the channel and isn't allowed to send the message. |
-| `900200(request failed)` | TOO\_MANY\_MESSAGESThe number of the sent messages exceeds the allowed amount. |
-| `900300(request failed)` | MESSAGE\_NOT\_FOUNDThe request failed because the message to edit can't be retrieved. |
-| `900400(request failed)` | TOO\_MANY\_PARTICIPANTSThe number of the channel's participants exceeds the allowed amount. |
-| `900500(request failed)` | CHANNEL\_NOT\_FOUNDThe request failed because there is no channel to perform this operation. |
+| `400100(bad request)` | UNEXPECTED\_PARAMETER\_TYPEThe request specifies one or more parameters in an unexpected data type. The data type of the parameters should be `String`. |
+| `400101(bad request)` | UNEXPECTED\_PARAMETER\_TYPEThe request specifies one or more parameters in an unexpected data type. The data type of the parameters should be `number`. |
+| `400102(bad request)` | UNEXPECTED\_PARAMETER\_TYPEThe request specifies one or more parameters in an unexpected data type. The data type of the parameters should be `list`. |
+| `400103(bad request)` | UNEXPECTED\_PARAMETER\_TYPEThe request specifies one or more parameters in an unexpected data type. The data type of the parameters should be `JSON`. |
+| `400104(bad request)` | UNEXPECTED\_PARAMETER\_TYPEThe request specifies one or more parameters in an unexpected data type. The data type of the parameters should be `Bool`. |
+| `400105(bad request)` | MISSING\_REQUIRED\_PARAMETERSThe request is missing one or more required parameters. |
+| `400106(bad request)` | NEGATIVE\_NUMBER\_NOT\_ALLOWEDThe parameter specifies a negative number. Its value should be a positive number. |
+| `400108(bad request)` | UNAUTHORIZED\_REQUESTThe request isn't authorized and can't access the requested resource. |
+| `400109(bad request)` | EXPIRED\_PAGE\_TOKENThe value of the `token` parameter for pagination has expired. |
+| `400110(bad request)` | PARAMETER\_VALUE\_LENGTH\_EXCEEDEDThe length of the parameter value is too long. |
+| `400111(bad request)` | INVALID\_VALUEThe request specifies an invalid value. |
+| `400112(bad request)` | INCOMPATIBLE\_VALUESThe two parameters of the request, which should have unique values, specify the same value. |
+| `400113(bad request)` | PARAMETER\_VALUE\_OUT\_OF\_RANGEThe request specifies one or more parameters which are outside the allowed value range. |
+| `400114(bad request)` | INVALID\_URL\_OF\_RESOURCEThe resource identified with the URL in the request can't be found. |
+| `400151(bad request)` | NOT\_ALLOWED\_CHARACTERThe request specifies an illegal value containing special character, empty String, or white space. |
+| `400201(bad request)` | RESOURCE\_NOT\_FOUNDThe resource identified with the request's `resourceId` parameter can't be found. |
+| `400202(bad request)` | RESOURCE\_ALREADY\_EXISTSThe resource identified with the request's `resourceId` parameter already exists. |
+| `400203(bad request)` | TOO\_MANY\_ITEMS\_IN\_PARAMETERThe parameter specifies more items than allowed. |
+| `400300(bad request)` | DEACTIVATED\_USER\_NOT\_ACCESSIBLEThe request can't retrieve the deactivated user data. |
+| `400301(bad request)` | USER\_NOT\_FOUNDThe user identified with the request's `USER_ID` can't be found because either the user doesn't exist or has been deleted. |
+| `400302(bad request)` | INVALID\_ACCESS\_TOKENThe access token provided for the request specifies an invalid value. |
+| `400303(bad request)` | INVALID\_SESSION\_KEY\_VALUEThe session key provided for the request specifies an invalid value. |
+| `400304(bad request)` | APPLICATION\_NOT\_FOUNDThe application identified with the request can't be found. |
+| `400305(bad request)` | USER\_ID\_LENGTH\_EXCEEDEDThe length of the `USER_ID` is too long. |
+| `400306(bad request)` | PAID\_QUOTA\_EXCEEDEDThe request can't be completed because you have exceeded your paid quota. |
+| `400307(bad request)` | DOMAIN\_NOT\_ALLOWEDThe request can't be completed because it came from the restricted domain. |
+| `400401(bad request)` | INVALID\_API\_TOKENThe API token provided for the request specifies an invalid value. |
+| `400402(bad request)` | MISSING\_SOME\_PARAMETERSThe request is missing one or more necessary parameters. |
+| `400403(bad request)` | INVALID\_JSON\_REQUEST\_BODYThe request body is an invalid JSON. |
+| `400404(bad request)` | INVALID\_REQUEST\_URLThe request specifies an invalid HTTP request URL that can't be accessed. |
+| `400500(bad request)` | TOO\_MANY\_USER\_WEBSOCKET\_CONNECTIONSThe number of the user's websocket connections exceeds the allowed amount. |
+| `400501(bad request)` | TOO\_MANY\_APPLICATION\_WEBSOCKET\_CONNECTIONSThe number of the application's websocket connections exceeds the allowed amount. |
+| `400700(bad request)` | BLOCKED\_USER.SEND\_MESSAGE\_NOT\_ALLOWEDThe request can't be completed due to one of the following reasons: The sender is blocked by the recipient or has been deactivated, the message is longer than the maximum message length, or the message contains texts or URLs blocked by application settings or filters. |
+| `400701(bad request)` | BLOCKED\_USER.INVITED\_NOT\_ALLOWEDThe request can't be completed because the blocking user is trying to invite the blocked user to a channel. |
+| `400702(bad request)` | BLOCKED\_USER.INVITE\_NOT\_ALLOWEDThe request can't be completed because the blocked user is trying to invite the blocking user to a channel. |
+| `400750(bad request)` | BANNED\_USER.ENTER\_CHANNEL\_NOT\_ALLOWEDThe request can't be completed because the user is banned from a channel they're trying to enter. |
+| `400751(bad request)` | BANNED\_USER.ENTER\_CUSTOM\_CHANNEL\_NOT\_ALLOWEDThe request can't be completed because the user is banned from a custom channel they're trying to enter. |
+| `400920(bad request)` | UNACCEPTABLEThe request failed because the combination of parameter values is invalid. Even if each parameter value is valid, a combination of parameter values becomes invalid when it doesn't follow specific conditions.READ\_ONLY\_MODEWhen the application is in the read-only mode, can't complete API requests except for `GET`.NOT\_ACCESSIBLEThe request `DELETE` fails when the corresponding message has a child message. |
+| `400930(bad request)` | INVALID\_ENDPOINTThe request failed because it is sent to an invalid endpoint that no longer exists. |
+| `403100(forbidden)` | APPLICATION\_NOT\_AVAILABLEThe application identified with the request isn't available. |
+| `500601(internal server error)` | INTERNAL\_ERROR.PUSH\_TOKEN\_NOT\_REGISTEREDThe server encounters an error while trying to register the user's push token. |
+| `500602(internal server error)` | INTERNAL\_ERROR.PUSH\_TOKEN\_NOT\_UNREGISTEREDThe server encounters an error while trying to unregister the user's push token. |
+| `500901(internal server error)` | INTERNAL\_ERRORThe server encounters an unexpected exception while trying to process the request. |
+| `500910(too many request)` | RATE\_LIMIT\_EXCEEDEDThe request can't be completed because you have exceeded your rate limits. |
+| `503(service unavailable)` | SERVICE\_UNAVAILABLEThe request failed due to a temporary failure of the server. |
+| `900010(request failed)` | USER\_LOGIN\_REQUIREDThe request failed because the user isn't logged in to the server. |
+| `900020(request failed)` | USER\_NOT\_MEMBERThe request failed because the user isn't a member of the channel. |
+| `900021(request failed)` | USER\_DEACTIVATEDThe request failed because the user is deactivated. |
+| `900022(request failed)` | USER\_NOT\_OWNER\_OF\_MESSAGEThe request failed because the user has no permission to edit the other user's message. |
+| `900023(request failed)` | PENDING\_USER\_SEND\_MESSAGE\_NOT\_ALLOWEDThe request failed because the user is trying to send the messages in the channel of which they are not the member. |
+| `900025(request failed)` | INVALID\_MENTION\_FOR\_MESSAGEThe specified mention type in the request is invalid. |
+| `900026(request failed)` | INVALID\_PUSH\_OPTION\_FOR\_MESSAGEThe specified push option in the request is invalid. |
+| `900027(request failed)` | TOO\_MANY\_META\_KEY\_FOR\_MESSAGEThe request failed because it specifies more meta data keys for the message than allowed. |
+| `900028(request failed)` | TOO\_MANY\_META\_VALUE\_FOR\_MESSAGEThe request failed because it specifies more meta data values for the message than allowed. |
+| `900029(request failed)` | INVALID\_META\_ARRAY\_FOR\_MESSAGEThe request failed because it specifies an invalid value in the meta data for the message. |
+| `900030(request failed)` | GUEST\_NOT\_ALLOWEDThe request failed because the guest isn't allowed to perform this operation. |
+| `900040(request failed)` | MUTED\_USER\_IN\_APPLICATION\_SEND\_MESSAGE\_NOT\_ALLOWEDThe request failed because the user is muted in the application and isn't allowed to send the message. |
+| `900041(request failed)` | MUTED\_USER\_IN\_CHANNEL\_SEND\_MESSAGE\_NOT\_ALLOWEDThe request failed because the user is muted in the channel and isn't allowed to send the message. |
+| `900050(request failed)` | CHANNEL\_FROZENThe request failed because the channel is frozen and no one can send the message to the channel. |
+| `900060(request failed)` | PROFANITY\_MESSAGE\_BLOCKEDThe request failed because it specifies the message containing a profanity word. |
+| `900061(request failed)` | BANNED\_URLS\_BLOCKEDThe request failed because it specifies the message containing a URL that isn't allowed. |
+| `900065(request failed)` | RESTRICTED\_DOMAIN\_BLOCKEDThe request failed because it comes from the domain that isn't allowed. |
+| `900066(request failed)` | MODERATED\_FILE\_BLOCKEDThe request failed because it contains the file violating at least one of the content management policies. |
+| `900070(request failed)` | ENTER\_DELETED\_CHANNELThe request failed because the user is trying to enter a deleted channel. |
+| `900080(request failed)` | BLOCKED\_USER\_RECEIVE\_MESSAGE\_NOT\_ALLOWEDThe request failed because the blocking user is trying to send the message to the blocked user in a 1-to-1 distinct channel. |
+| `900081(request failed)` | DEACTIVATED\_USER\_RECEIVE\_MESSAGE\_NOT\_ALLOWEDThe request failed because the user is trying to send the message to the deactivated user in a 1-to-1 distinct channel. |
+| `900090(request failed)` | WRONG\_CHANNEL\_TYPEThe request failed because it specifies a wrong channel type. |
+| `900100(request failed)` | BANNED\_USER\_SEND\_MESSAGE\_NOT\_ALLOWEDThe request failed because the user is banned from the channel and isn't allowed to send the message. |
+| `900200(request failed)` | TOO\_MANY\_MESSAGESThe number of the sent messages exceeds the allowed amount. |
+| `900300(request failed)` | MESSAGE\_NOT\_FOUNDThe request failed because the message to edit can't be retrieved. |
+| `900400(request failed)` | TOO\_MANY\_PARTICIPANTSThe number of the channel's participants exceeds the allowed amount. |
+| `900500(request failed)` | CHANNEL\_NOT\_FOUNDThe request failed because there is no channel to perform this operation. |
 
 ## Logger
 

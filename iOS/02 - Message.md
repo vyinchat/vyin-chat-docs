@@ -23,7 +23,7 @@ Characteristics and supported features of each message type are shown below.
 
 |  | Text | File | Admin |
 | :---- | :---- | :---- | :---- |
-| Class | `UserMessage` | `FileMessage`,`MultipleFilesMessage` | `AdminMessage` |
+| Class | `UserMessage` | `FileMessage`,`MultipleFilesMessage` | `AdminMessage` |
 | Content | Text only | File only | Text only |
 | Send by user | Required | Required | Not required |
 | Join group channel | Required | Required | Not required |
@@ -1084,14 +1084,14 @@ You can build the query class using the following parameters which allow you to 
 
 | Parameter name | Type | Description |
 | :---- | :---- | :---- |
-| keyword | String | Specifies the search term.\* Special characters and punctuations aren't indexed, so including them in the keyword may return unexpected search results. |
+| keyword | String | Specifies the search term.\* Special characters and punctuations aren't indexed, so including them in the keyword may return unexpected search results. |
 | channelUrl | String | Specifies the URL of the target channel. |
 | channelCustomType | String | Specifies the custom channel type. |
 | limit | int | Specifies the number of messages to return per page. Acceptable values are `1` to `99`, inclusive. (Default: `20`) |
 | exactMatch | Bool | Determines whether to search for messages that exactly match the search term. If set to `false`, it returns partially matched messages that contain the search term. (Default: `false`) |
 | messageTimestampFrom | Int64 | Restricts the search scope to the messages sent after the specified value in Unix milliseconds format. This includes the messages sent exactly on the timestamp. (Default: `0`) |
 | messageTimestampTo | Int64 | Restricts the search scope to the messages sent before the specified value in Unix milliseconds format. This includes the messages sent exactly on the timestamp. (Default: `Long.MAX_VALUE`) |
-| order | enum | Determines which field the results are sorted by. Acceptable values are the following:\- `SCORE` (default): the search relevance score.\- `TIMESTAMP`: the time when a message was created. (Default: `SCORE`) |
+| order | enum | Determines which field the results are sorted by. Acceptable values are the following:\- `SCORE` (default): the search relevance score.\- `TIMESTAMP`: the time when a message was created. (Default: `SCORE`) |
 | reverse | Bool | Determines whether to sort the results in reverse order. If set to `false`, they will be sorted in descending order. (Default: `false`) |
 
 ## Managing a message
@@ -1700,7 +1700,7 @@ let params = MessageChangeLogsParams()
 
 | Property name | Type | Description |
 | :---- | :---- | :---- |
-| `replyType` | String | Specifies the type of message to include in the results.\- `.none` (default): Includes unthreaded messages and only the parent messages of threaded messages.\- `.all`: Includes both threaded and unthreaded messages.\- `.onlyReplyToChannel`: Includes unthreaded messages, parent messages of threaded messages, and messages sent to the channel as replies with the `reply_to_channel` property set to `true`. |
+| `replyType` | String | Specifies the type of message to include in the results.\- `.none` (default): Includes unthreaded messages and only the parent messages of threaded messages.\- `.all`: Includes both threaded and unthreaded messages.\- `.onlyReplyToChannel`: Includes unthreaded messages, parent messages of threaded messages, and messages sent to the channel as replies with the `reply_to_channel` property set to `true`. |
 | `includeThreadInfo` | Bool | Determines whether to include the thread information of the messages in the result. (Default: `false`) |
 | `includeParentMessageInfo` | Bool | Determines whether to include the information of the parent messages in the result. (Default: `false`) |
 
@@ -2667,10 +2667,10 @@ GIMChat.updateConverstationSummarySetting(isEnabled: true/false)
 | Criteria | Description | ABLE to trigger summary if | NO NEED to trigger if |
 | :---- | :---- | :---- | :---- |
 | **Criteria** | **Description** | **ABLE to trigger summary if** | **NO NEED to trigger if** |
-| User Absence Duration  | How long the user has been offline/inactive in a specific group | The user's absence duration is between **2 hours and 2 days**. *(This is a good window for users to catch up.)* | The user's absence duration is **less than 2 hours** *(The user is still fresh and can easily catch up manually.)* The user's absence duration is **more than 2 days** (*The conversation might be too large to summarize effectively, so skip.)* |
+| User Absence Duration  | How long the user has been offline/inactive in a specific group | The user's absence duration is between **2 hours and 2 days**. *(This is a good window for users to catch up.)* | The user's absence duration is **less than 2 hours** *(The user is still fresh and can easily catch up manually.)* The user's absence duration is **more than 2 days** (*The conversation might be too large to summarize effectively, so skip.)* |
 | Unread message | All of the below criteria relate to unread messages |  |  |
-| Conversation Type | Detect whether the recent conversation is meaningful enough for summarization, or just casual chatting (emojis, short replies, media flood, etc.) | Conversation has **≤ 70%** emoji/sticker-only messages. AND **≤ 70%** short messages (message has **≥ 5 words** or **≥ 20 characters**). AND **≤ 60%** casual keywords (such as "ok", "lol", "haha", "yes", "kk", "👍", "😂"). **AND** the conversation is **not dominated by file/media sharing**, specifically: There must be at least 10 real text messages,  AND The number of media files (images, videos, attachments) must not exceed the number of text messages. | \> 70% of unread messages are emojis, stickers, or GIFs only OR \> 70% of unread messages are very short (under 5 words or 20 characters). OR \> 60% of unread messages contain casual chatting keywords. OR Conversation mainly contains file/media sharing with minimal text content. |
-| Number of Unread Messages and Number of Unread Characters | Count the number of unread messages and the total number of characters from a local user in a specific group. | The user has **≥ 30 unread messages** in that group,  **OR** The user has **≥ 3000 unread characters** in that group. *(These thresholds typically indicate a significant amount of information, making it hard for users to catch up manually.)* | The user has **fewer than 30 unread messages** **AND** **fewer than 3000 unread characters**.*(In this case, there is little information, and users can catch up manually.)* |
+| Conversation Type | Detect whether the recent conversation is meaningful enough for summarization, or just casual chatting (emojis, short replies, media flood, etc.) | Conversation has **≤ 70%** emoji/sticker-only messages. AND **≤ 70%** short messages (message has **≥ 5 words** or **≥ 20 characters**). AND **≤ 60%** casual keywords (such as "ok", "lol", "haha", "yes", "kk", "👍", "😂"). **AND** the conversation is **not dominated by file/media sharing**, specifically: There must be at least 10 real text messages,  AND The number of media files (images, videos, attachments) must not exceed the number of text messages. | \> 70% of unread messages are emojis, stickers, or GIFs only OR \> 70% of unread messages are very short (under 5 words or 20 characters). OR \> 60% of unread messages contain casual chatting keywords. OR Conversation mainly contains file/media sharing with minimal text content. |
+| Number of Unread Messages and Number of Unread Characters | Count the number of unread messages and the total number of characters from a local user in a specific group. | The user has **≥ 30 unread messages** in that group,  **OR** The user has **≥ 3000 unread characters** in that group. *(These thresholds typically indicate a significant amount of information, making it hard for users to catch up manually.)* | The user has **fewer than 30 unread messages** **AND** **fewer than 3000 unread characters**.*(In this case, there is little information, and users can catch up manually.)* |
 | Number of Participants | Tracks the number of unique participants in the group during the user's absence | The number of **unique participants ≥ 3** | The number of participants is **≤ 2** (likely a one-on-one chat, which is easy for the user to catch up on) |
 | Mentions/Tags | Detects if the user was tagged or mentioned directly during their absence. | The user is **mentioned ≥ 2 times** in the conversation | The user is mentioned **\< 2 times** |
 | Conversation Topic Change | Detects if there were significant topic changes during the user's absence. | The conversation has shifted **≥ 3 times** in topics (e.g., from "Project Update" to "Meeting Schedule" to "Team Outing") | The conversation remains on a single topic or has very few changes |
