@@ -1029,7 +1029,7 @@ Messages in ephemeral open channels aren't saved on Vyin Chat's database. This m
 
 ### Group channel {#group-channel}
 
-A group channel is a chat that allows close interactions among a limited number of users. In order to [join a group channel](), an invitation from a channel member is required. Depending on how you implement the joining process at the application level, an invited user can automatically join a group channel or manually accept the invitation to join. Various properties can be leveraged to design different types of group channels that suit your use cases, such as Twitter-style 1-to-1 direct messaging, WhatsApp-style group chat, and more.
+A group channel is a chat that allows close interactions among a limited number of users. In order to join a group channel, an invitation from a channel member is required. Depending on how you implement the joining process at the application level, an invited user can automatically join a group channel or manually accept the invitation to join. Various properties can be leveraged to design different types of group channels that suit your use cases, such as Twitter-style 1-to-1 direct messaging, WhatsApp-style group chat, and more.
 
 #### Choose a type of a group channel {#choose-a-type-of-a-group-channel}
 
@@ -1065,7 +1065,7 @@ Messages sent in an ephemeral group channel aren't saved on Vyin Chat's database
 
 ### Supergroup channel
 
-A Supergroup channel is an expanded version of a group channel, which can accommodate a massive number of members while serving the same functions as a [group channel](#group-channel). The maximum number can stretch up to tens of thousands of members depending on your Vyin Chat plan. Because a Supergroup channel is built upon the same foundation as a group channel, Platform APIs and SDK functions for both channel types are identical.
+A Supergroup channel is an expanded version of a group channel, which can accommodate a massive number of members while serving the same functions as a group channel. The maximum number can stretch up to tens of thousands of members depending on your Vyin Chat plan. Because a Supergroup channel is built upon the same foundation as a group channel, Platform APIs and SDK functions for both channel types are identical.
 
 Note: Supergroup and group channels are alike in terms of Platform API and SDK design, except for the `isSuper` property. The `isSuper` property indicates whether the channel is a Supergroup channel or a group channel.
 
@@ -1077,7 +1077,7 @@ Supergroup channels can be used for a wide range of occasions that demand real-t
 * Gaming community: Another common set-up is gaming communities, where users gather to find players to team up with or exchange ideas and strategies to advance further in the game.  
 * Stand-ups: Supergroup channels are a great place for midsize conferences, such as an organization-wide stand-up.
 
-Note: To learn about differences among open channels, group channels, and Supergroup channels, see [Channel types](#comparing-channel-types).
+Note: To learn about differences among open channels, group channels, and Supergroup channels, see Channel types.
 
 #### Limitations {#limitations}
 
@@ -1113,29 +1113,29 @@ The following table compares the difference among two types of channels.
 
 |  | Open channel | Group channel | Supergroup channel |
 | :---- | :---- | :---- | :---- |
-| Maximum number in a channel | Up to millions of [participants](?tab=t.idg08sfacq58) | 100 [members](?tab=t.idg08sfacq58) | Up to tens of thousands of [members](?tab=t.idg08sfacq58) depending on your Vyin Chat plan. |
-| Accessible by | Anyone within the application | [Invited users]() only if private or anyone if public | [Invited users]() only if private or anyone if public |
-| Ephemeral messaging | Supported | [Supported](#ephemeral-vs.-persistent-group-channels) | [Supported](#choose-a-type-of-a-group-channel) |
+| Maximum number in a channel | Up to millions of participants | 100 members | Up to tens of thousands of members depending on your Vyin Chat plan. |
+| Accessible by | Anyone within the application | Invited users only if private or anyone if public | Invited users only if private or anyone if public |
+| Ephemeral messaging | Supported | Supported | Supported |
 | Online presence | Supported | Supported | Supported |
-| Last message | N/A | [Supported](?tab=t.7x5fkf99btam) | [Supported](?tab=t.7x5fkf99btam) |
+| Last message | N/A | Supported | Supported |
 | UIKit | Supported | Supported | Supported |
-| [Operators](?tab=t.idg08sfacq58) | [Supported](?tab=t.3lxru8i8hlf0) | [Supported](?tab=t.3lxru8i8hlf0) | [Supported](?tab=t.3lxru8i8hlf0) |
-| Ban users | [Supported]() | [Supported]() | [Supported]() |
-| Mute users | [Supported]() | [Supported]() | [Supported]() |
-| Freeze channels | [Supported](?tab=t.rkovea8tczzc) | [Supported](?tab=t.rkovea8tczzc) | [Supported](?tab=t.rkovea8tczzc) |
-| Delivery receipts | N/A | [Supported](?tab=t.ap7ikkmss0bb) | N/A |
-| Read receipts | N/A | [Supported](?tab=t.stk272hvoj4q) | N/A |
-| Unread counts | N/A | [Supported](?tab=t.yrf1x4hr819p) | [Supported](?tab=t.yrf1x4hr819p) \* Up to 100 unread counts are supported. |
-| Typing indicators | N/A | [Supported](?tab=t.28ueb1jmgjnr) | [Supported](?tab=t.28ueb1jmgjnr) \* Up to 3 concurrent indicators are supported. |
-| Mention others in message | [Supported](?tab=t.7gvsyif7dvtc) | [Supported](?tab=t.7gvsyif7dvtc) | [Supported](?tab=t.7gvsyif7dvtc) |
+| Operators | Supported | Supported | Supported |
+| Ban users | Supported | Supported | Supported |
+| Mute users | Supported | Supported | Supported |
+| Freeze channels | Supported | Supported | Supported |
+| Delivery receipts | N/A | Supported | N/A |
+| Read receipts | N/A | Supported | N/A |
+| Unread counts | N/A | Supported | Supported \* Up to 100 unread counts are supported. |
+| Typing indicators | N/A | Supported | Supported \* Up to 3 concurrent indicators are supported. |
+| Mention others in message | Supported | Supported | Supported |
 | Mention counts | N/A | Supported | Supported |
-| Reactions | N/A | [Supported](?tab=t.bs0a7ajqwe1h) | [Supported](?tab=t.bs0a7ajqwe1h) |
-| Spam flood protection | [Supported](?tab=t.6hp8x6tlxcog) | [Supported](?tab=t.6hp8x6tlxcog) | [Supported](?tab=t.6hp8x6tlxcog) |
+| Reactions | N/A | Supported | Supported |
+| Spam flood protection | Supported | Supported | Supported |
 | Chatbot interface | Supported | Supported | Supported |
-| Smart throttling | [Supported](?tab=t.42cxg3b710ft) (Default: `true`) | [Supported](?tab=t.42cxg3b710ft) (Default: `false`) | [Supported](?tab=t.42cxg3b710ft) (Default: `false`) |
-| Push notifications | N/A\* Push notifications for announcements only. | [Supported](?tab=t.z7a614ntsbtt)   \* Push notifications for every message sent. | [Supported](?tab=t.z7a614ntsbtt)   \* Refer to [Limitations](#limitations). |
+| Smart throttling | Supported (Default: `true`) | Supported (Default: `false`) | Supported (Default: `false`) |
+| Push notifications | N/A\* Push notifications for announcements only. | Supported   \* Push notifications for every message sent. | Supported   \* Refer to Limitations. |
 | Get a channel with its participant list or member list | N/A | Supported | Supported\* Only ten members are retrieved as a preview.To get an entire list of members, use the list members API instead. |
-| Pagination for participant list or member list | [Supported]() | [Supported]() | [Supported]() |
+| Pagination for participant list or member list | Supported | Supported | Supported |
 | Order of channel list | \- Chronological | \- Chronological\- Latest last message\- Channel name\- Metadata value | \- Chronological\- Latest last message\- Channel name\- Metadata value |
 
 ---
@@ -1148,68 +1148,68 @@ Users can interact with other users in a channel by sending, receiving, replying
 
 | Functionality | Description | Open channel | Group channel |
 | :---- | :---- | ----- | ----- |
-| [Create a channel](?tab=t.ruetpdultbj9) | Creates a channel where users can chat. | ✔ | ✔ |
+| Create a channel | Creates a channel where users can chat. | ✔ | ✔ |
 
 #### Managing operators
 
 | Functionality | Description | Open channel | Group channel |
 | :---- | :---- | ----- | ----- |
-| [Register and remove operators in a channel](?tab=t.3lxru8i8hlf0) | Adds and removes users as operators to a channel. | ✔ | ✔ |
+| Register and remove operators in a channel | Adds and removes users as operators to a channel. | ✔ | ✔ |
 
 #### Joining and leaving a channel
 
 | Functionality | Description | Open channel | Group channel |
 | :---- | :---- | ----- | ----- |
-| [Enter and exit an open channel]() | Users can enter and exit open channels to receive messages. | ✔ |  |
-| [Join and leave a group channel]() | Users can join and leave group channels to receive messages. |  | ✔ |
+| Enter and exit an open channel | Users can enter and exit open channels to receive messages. | ✔ |  |
+| Join and leave a group channel | Users can join and leave group channels to receive messages. |  | ✔ |
 
 #### Retrieving channels
 
 | Functionality | Description | Open channel | Group channel |
 | :---- | :---- | ----- | ----- |
-| [Retrieve a list of channels]() | Retrieves a list of channels. | ✔ | ✔ |
-| [Retrieve a channel by URL]() | Retrieves a channel by its URL. | ✔ | ✔ |
+| Retrieve a list of channels | Retrieves a list of channels. | ✔ | ✔ |
+| Retrieve a channel by URL | Retrieves a channel by its URL. | ✔ | ✔ |
 
 #### Inviting users to a channel
 
 | Functionality | Description | Open channel | Group channel |
 | :---- | :---- | :---- | ----- |
-| [Invite users as members]() | Invites new users to a channel which is performed only by the members of a group channel. |  | ✔ |
-| [Accept or decline an invitation]() | Accepts or declines an invitation to join a group channel. |  | ✔ |
+| Invite users as members | Invites new users to a channel which is performed only by the members of a group channel. |  | ✔ |
+| Accept or decline an invitation | Accepts or declines an invitation to join a group channel. |  | ✔ |
 
 #### Searching channels
 
 | Functionality | Description | Open channel | Group channel |
 | :---- | :---- | ----- | ----- |
-| [Search open channels by name, URL, or custom types]() | Searches for specific open channels by using a keyword. | ✔ |  |
-| [Search group channels by name, URL, or other filters]() | Searches for specific group channels by using name, URL, or several types of filters. |  | ✔ |
-| [Filter channels by user IDs]() | Filters channels using user IDs. |  | ✔ |
+| Search open channels by name, URL, or custom types | Searches for specific open channels by using a keyword. | ✔ |  |
+| Search group channels by name, URL, or other filters | Searches for specific group channels by using name, URL, or several types of filters. |  | ✔ |
+| Filter channels by user IDs | Filters channels using user IDs. |  | ✔ |
 
 #### Categorizing channels
 
 | Functionality | Description | Open channel | Group channel |
 | :---- | :---- | ----- | ----- |
-| [Categorize channels by custom type](?tab=t.hyyds2yiwzfm) | Specifies a custom channel to subclassify channels. | ✔ | ✔ |
+| Categorize channels by custom type | Specifies a custom channel to subclassify channels. | ✔ | ✔ |
 
 #### Managing channels
 
 | Functionality | Description | Open channel | Group channel |
 | :---- | :---- | ----- | ----- |
-| [Delete a channel]() | Deletes a channel which only operators can do. | ✔ | ✔ |
-| [Hide or archive a channel]() | Hides or archives a specific channel from a list of channels. |  | ✔ |
-| [Refresh all data related to a channel]() | Updates the user's channels with the latest information. |  | ✔ |
+| Delete a channel | Deletes a channel which only operators can do. | ✔ | ✔ |
+| Hide or archive a channel | Hides or archives a specific channel from a list of channels. |  | ✔ |
+| Refresh all data related to a channel | Updates the user's channels with the latest information. |  | ✔ |
 
 #### Moderating a channel
 
 | Functionality | Description | Open channel | Group channel |
 | :---- | :---- | ----- | ----- |
-| [Freeze and unfreeze a channel](?tab=t.rkovea8tczzc) | Temporarily disables various functions of a channel. | ✔ | ✔ |
+| Freeze and unfreeze a channel | Temporarily disables various functions of a channel. | ✔ | ✔ |
 
 #### Managing channel metadata
 
 | Functionality | Description | Open channel | Group channel |
 | :---- | :---- | ----- | ----- |
-| [Manage channel metadata](?tab=t.9j22aho39dm0) | Store additional information to a channel. You can create, retrieve, update and delete the additional information. | ✔ | ✔ |
+| Manage channel metadata | Store additional information to a channel. You can create, retrieve, update and delete the additional information. | ✔ | ✔ |
 
 ## Creating a channel
 
@@ -1308,9 +1308,9 @@ Note: You can also use the Chat API to create open channels and group channels. 
 
 ### Supergroup channel
 
-Creating a Supergroup channel follows the same process as [creating a group channel](?tab=t.ruetpdultbj9) with one exception of the `isSuper` property. The `GroupChannelCreateParams` class has the `isSuper` property that determines whether a newly created channel is a Supergroup channel or a regular group channel. Set `isSuper` to `true` to create a new Supergroup channel.
+Creating a Supergroup channel follows the same process as creating a group channel with one exception of the `isSuper` property. The `GroupChannelCreateParams` class has the `isSuper` property that determines whether a newly created channel is a Supergroup channel or a regular group channel. Set `isSuper` to `true` to create a new Supergroup channel.
 
-Because the [distinct](?tab=t.gygp5bj64m3o) option isn't available for Supergroup channels, the `isDistinct` property is set to `false` by default when creating a Supergroup channel.  
+Because the distinct option isn't available for Supergroup channels, the `isDistinct` property is set to `false` by default when creating a Supergroup channel.  
 
 ```swift
 let params = GroupChannelCreateParams()
@@ -1423,7 +1423,7 @@ OpenChannel.getChannel(url: CHANNEL_URL) { channel, e in
 
 ## Join and leave a group channel
 
-By default, an invitation is required to join group channels. However, any user can join [public group channels](?tab=t.gygp5bj64m3o) as a member without invitations as shown below. Users can join up to 2,000 group channels.  
+By default, an invitation is required to join group channels. However, any user can join public group channels as a member without invitations as shown below. Users can join up to 2,000 group channels.  
 
 ```swift
 if (groupChannel.isPublic) {
@@ -1457,7 +1457,7 @@ You can retrieve a list of `OpenChannel` objects using the loadNextPage() method
 
 On the other hand, a list of `GroupChannel` objects can be retrieved through `GroupChannelCollection` and its `loadMore()` method. First, create a `GroupChannelListQuery` instance. The `GroupChannelListQuery` instance returns both public and private group channels that the current user has joined. To retrieve a list of certain group channels such as public group channels or Supergroup channels, use the list query's filters as described at the bottom of this page.
 
-Note: You can also search for specific [open channels]() and [group channels]() with keywords and filters.  
+Note: You can also search for specific open channels and group channels with keywords and filters.  
 
 ---
 
@@ -1477,11 +1477,11 @@ query.loadMore { channels, e in
 
 ### Group channels
 
-A group channel list view can be drawn with a [`GroupChannelCollection`](?tab=t.6ppoc2h9dwd1) instance. First, create a `GroupChannelListQuery` instance through the `createMyGroupChannelListQuery()` method and its query setters. This determines which channel to include in the channel list and how to list channels in order.
+A group channel list view can be drawn with a `GroupChannelCollection` instance. First, create a `GroupChannelListQuery` instance through the `createMyGroupChannelListQuery()` method and its query setters. This determines which channel to include in the channel list and how to list channels in order.
 
 To retrieve group channels in the collection, call `hasNext` first to check whether there are more channels to load for the collection. If so, call `loadMore()`.
 
-To learn more about how the collection works, see [Group channel collection](?tab=t.6ppoc2h9dwd1) under Local caching.  
+To learn more about how the collection works, see Group channel collection under Local caching.  
 
 ```swift
 // Call hasMore first to check if there are more channels to load.
@@ -1499,7 +1499,7 @@ if (collection.hasNext) {
 
 #### Filter group channels using GroupChannelListQuery
 
-When creating a `GroupChannelCollection` instance, you need to set params within `GroupChannelListQuery` first. The params in `GroupChannelListQuery` works much like other [search options](), retrieving a list of group channels matching the specifications set by `GroupChannelListQueryParams`. For example, use `myMemberStateFilter` when searching for only the group channels that the current user belongs to.
+When creating a `GroupChannelCollection` instance, you need to set params within `GroupChannelListQuery` first. The params in `GroupChannelListQuery` works much like other search options, retrieving a list of group channels matching the specifications set by `GroupChannelListQueryParams`. For example, use `myMemberStateFilter` when searching for only the group channels that the current user belongs to.
 
 Once the params are set, you can use the query instance for `GroupChannelCollectionCreateParams` in `createGroupChannelCollection()`.  
 
@@ -1813,7 +1813,7 @@ GroupChannel.createChannel(params: params) { channel, e in
 
 ## Delete a channel
 
-Only [channel operators](?tab=t.idg08sfacq58) are allowed to delete a channel. To delete a channel, follow the code below.
+Only channel operators are allowed to delete a channel. To delete a channel, follow the code below.
 
 ### Open channel
 
@@ -1961,7 +1961,7 @@ groupChannel.unfreeze { e in
 
 You can store additional information to channels such as background color or channel description with channel metadata, which can be fetched or rendered into the UI. Channel metadata is `Map<String, String>` and it can be stored into a `Channel` object.
 
-To receive and retrieve information about events happening in channels from the Vyin Chat server, you can add a channel event handler. For more information on channel event handlers, see [Channel event types](?tab=t.ihxhjtpz6j4i).  
+To receive and retrieve information about events happening in channels from the Vyin Chat server, you can add a channel event handler. For more information on channel event handlers, see Channel event types.  
 
 ---
 

@@ -211,19 +211,19 @@ The following is a list of event handler functionalities that our Chat SDK provi
 
 | Functionality | Description | Open channel | Group channel |
 | :---- | :---- | :---- | :---- |
-| Add or remove a channel event handler | Adds or removes an event handler that receives information about events happening in channels from the Vyin Chat server. |  |  |
+| Add or remove a channel event handler | Adds or removes an event handler that receives information about events happening in channels from the Vyin Chat server. | ✓ | ✓ |
 
 #### Managing a user event handler
 
 | Functionality | Description | Open channel | Group channel |
 | :---- | :---- | :---- | :---- |
-| Add or remove a user event handler | Adds or removes an event handler that receives information about events related to users connected to the Vyin Chat server. |  |  |
+| Add or remove a user event handler | Adds or removes an event handler that receives information about events related to users connected to the Vyin Chat server. | ✓ | ✓ |
 
 #### Managing a connection event handler
 
 | Functionality | Description | Open channel | Group channel |
 | :---- | :---- | :---- | :---- |
-| Add or remove a connection event handler | Adds or removes an event handler that receives information about changes related to the Vyin Chat server connection status. |  |  |
+| Add or remove a connection event handler | Adds or removes an event handler that receives information about changes related to the Vyin Chat server connection status. | ✓ | ✓ |
 
 ## Managing channel event handlers
 
@@ -709,17 +709,17 @@ Users can set their preferences for receiving notifications in their devices. Th
 
 | Functionality | Description | Open channel | Group channel |
 | :---- | :---- | :---- | :---- |
-| Set up push notifications for FCM | Users can receive FCM messages in their iOS app. | 🗸 |  |
-| Configure push notification preferences | Turns push notifications on or off in a user's app using the user's registration token. |  | 🗸 |
-| Push notification content templates | Displays customized push notification messages on a user's device using templates. |  | 🗸 |
-| Push notification tester | Test on Vyin Chat Dashboard whether the push notification credentials and notification services are working properly. |  | 🗸 |
-| Push notification translation | Users can receive notification messages translated into their preferred languages. |  | 🗸 |
+| Set up push notifications for FCM | Users can receive [FCM messages](https://firebase.google.com/docs/cloud-messaging/concept-options) in their iOS app. | ✓ |  |
+| Configure push notification preferences | Turns push notifications on or off in a user's app using the user's registration token. |  | ✓ |
+| Push notification content templates | Displays customized push notification messages on a user's device using templates. |  | ✓ |
+| Push notification tester | Test on Vyin Chat Dashboard whether the push notification credentials and notification services are working properly. |  | ✓ |
+| Push notification translation | Users can receive notification messages translated into their preferred languages. |  | ✓ |
 
 #### Additional support for multi-device users
 
 | Functionality | Description | Open channel | Group channel |
 | :---- | :---- | :---- | :---- |
-| Set up push notifications for FCM | Multi-device users can receive FCM messages on multiple devices. |  | 🗸 |
+| Set up push notifications for FCM | Multi-device users can receive [FCM messages](https://firebase.google.com/docs/cloud-messaging/concept-options) on multiple devices. |  | ✓ |
 
 ## Managing push notifications
 
@@ -747,7 +747,7 @@ Note: If you already have your private key, skip this step and go directly to St
 
 To view the image in full screen, click on the
 
-> **[IMAGE PLACEHOLDER]** Creating your project in the Firebase console.
+> **[IMAGE PLACEHOLDER]** Creating your project in the [Firebase console](https://console.firebase.google.com/).
 
 2. Select your project card to move to the Project Overview.  
 3. Click the gear icon at the upper left corner and select Project settings.
@@ -760,7 +760,7 @@ To view the image in full screen, click on the
 
 To view the image in full screen, click on the
 
-> **[IMAGE PLACEHOLDER]** Firebase console screen to generate a new private key.
+> **[IMAGE PLACEHOLDER]** [Firebase console](https://console.firebase.google.com/) screen to generate a new private key.
 
 5. Go to the General tab and select your iOS app to add Firebase to. During the registration process, enter your package name, download the `GoogleService-Info.plist` file, and place it in your iOS app module root directory.
 
@@ -826,11 +826,11 @@ func application(_ application: UIApplication, didRegisterForRemoteNotifications
 }
 
 public class func registerDevicePushToken(_ devToken: Data, unique: Bool, completionHandler: ((_ registrationStatus: PushTokenRegistrationStatus, _ error: GIMError?) -> Void)? = nil) {
-
+    // Register push token with the server.
 }
 ```
 
-Note: If `PushTokenRegistrationStatus.pending` is returned through the handler, this means that your user isn't being connected to the Vyin Chat server when `registerDevicePushToken()` is called. In this case, you must first get a pending registration token using [`getToken()`](https://firebase.google.com/docs/reference/android/com/google/firebase/messaging/FirebaseMessaging#getToken\(\)), and then register the token by calling the `registerPushToken()` method in the `completionHandler` callback when your user has been connected to the server.  
+Note: If `PushTokenRegistrationStatus.pending` is returned through the handler, this means that your user isn't being connected to the Vyin Chat server when `registerDevicePushToken()` is called. In this case, you must first get a pending registration token using [`getToken()`](https://firebase.google.com/docs/reference/android/com/google/firebase/messaging/FirebaseMessaging#getToken())), and then register the token by calling the `registerPushToken()` method in the `completionHandler` callback when your user has been connected to the server.  
 
 ```swift
 GIMChat.connect(USER_ID) { user, e in
@@ -871,45 +871,45 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
 
 The following is a complete payload format of the `gim` property, which contains a set of provided key-value items. Some fields in the push notification payload can be customized in Settings \> Chat \> Notifications on the Vyin Chat Dashboard. For example, `push_title` and `push_alert` are created based on the Title and Body text you set in Push notification content templates, respectively, in the Notifications menu. In order to display them in a local notification, use `push_title` and `push_alert` of the push notification payload to configure the notification content in your `UNMutableNotificationContent`. Also, the `channel_unread_count` field can be added into or removed from the payload in the same menu on the Vyin Chat Dashboard.  
 
-```
+```json
 {
     "category": "messaging:offline_notification",
-    "type": String,                         // Message type: MESG, FILE, or ADMM
-    "message": String,                          // User input message
-    "custom_type": String,                  // Custom message type
-    "message_id": Int64,                      // Message ID
-    "created_at": Int64,                      // The time that the message was created, in a 13-digit Unix milliseconds format
-    "app_id": String,                            // Application's unique ID
-    "unread_message_count": int,        // Total number of new messages unread by the user
+    "type": "String",                   // Message type: MESG, FILE, or ADMM
+    "message": "String",                // User input message
+    "custom_type": "String",            // Custom message type
+    "message_id": "Int64",              // Message ID
+    "created_at": "Int64",              // The time that the message was created, in a 13-digit Unix milliseconds format
+    "app_id": "String",                 // Application's unique ID
+    "unread_message_count": "int",      // Total number of new messages unread by the user
     "channel": {
-        "channel_url": String,          // Group channel URL
-        "name": String,                      // Group channel name
-        "custom_type": String,           // Custom Group channel type
-        "channel_unread_count": int // Total number of unread new messages from the specific channel
+        "channel_url": "String",        // Group channel URL
+        "name": "String",              // Group channel name
+        "custom_type": "String",       // Custom Group channel type
+        "channel_unread_count": "int"  // Total number of unread new messages from the specific channel
     },
-    "channel_type": String,             // A value of channel_type is set by the system. The value of messaging indicates a distinct group channel while group_messaging indicates a private group channel and chat indicates all other cases.
+    "channel_type": "String",           // messaging = distinct group channel, group_messaging = private group channel, chat = all other cases
     "sender": {
-        "id": String,                            // Sender's unique ID
-        "name": String,                      // Sender's nickname
-        "profile_url": String,           // Sender's profile image URL
+        "id": "String",                // Sender's unique ID
+        "name": "String",             // Sender's nickname
+        "profile_url": "String",      // Sender's profile image URL
         "require_auth_for_profile_image": false,
         "metadata": {}
     },
     "recipient": {
-        "id": String,                            // Recipient's unique ID
-        "name": String                          // Recipient's nickname
+        "id": "String",                // Recipient's unique ID
+        "name": "String"              // Recipient's nickname
     },
-    "files": [],                            // An array of data regarding the file message, such as filename
-    "translations": {},                      // The items of locale:translation.
-    "push_title": String,           // Title of a notification message that can be customized in the Vyin Chat Dashboard with or without variables
-    "push_sound": String,           // The location of a sound file for notifications
-    "audience_type": String,                // The type of audiences for notifications
+    "files": [],                        // An array of data regarding the file message, such as filename
+    "translations": {},                 // The items of locale:translation
+    "push_title": "String",            // Title of a notification message, customizable on Vyin Chat Dashboard
+    "push_sound": "String",            // The location of a sound file for notifications
+    "audience_type": "String",          // The type of audiences for notifications
     "mentioned_users": {
-        "user_id": String,              // The ID of a mentioned user
-        "nickname": String,         // The nickname of a mentioned user
-        "profile_url": String,      // Mentioned user's profile image URL
+        "user_id": "String",           // The ID of a mentioned user
+        "nickname": "String",         // The nickname of a mentioned user
+        "profile_url": "String",      // Mentioned user's profile image URL
         "require_auth_for_profile_image": false
-    },
+    }
 }
 ```
 
@@ -1224,7 +1224,7 @@ If you already have your server key, you can skip this step and go directly to S
 
 To view the image in full screen, click on the
 
-> **[IMAGE PLACEHOLDER]** Creating your project in the Firebase console.
+> **[IMAGE PLACEHOLDER]** Creating your project in the [Firebase console](https://console.firebase.google.com/).
 
 2. Select your project card to move to Project Overview.  
 3. Click the gear icon at the upper left corner and select Project settings.
@@ -1237,7 +1237,7 @@ To view the image in full screen, click on the
 
 To view the image in full screen, click on the
 
-> **[IMAGE PLACEHOLDER]** Firebase console screen to generate a new private key.
+> **[IMAGE PLACEHOLDER]** [Firebase console](https://console.firebase.google.com/) screen to generate a new private key.
 
 5. Go to the General tab and select your iOS app to add Firebase to. During the registration process, enter your package name, download the `GoogleService-Info.plist` file, and place it in your iOS app module root directory.
 
@@ -1275,9 +1275,9 @@ Note: To learn more about this step, refer to Firebase's [Set Up a Firebase Clou
 
 The Vyin Chat server sends push notification payloads as [FCM data messages](https://firebase.google.com/docs/cloud-messaging/concept-options), which contain notification-related data in the form of key-value pairs. Unlike notification messages, the client app needs to parse and process these data messages in order to display them as local notifications.
 
-The following code shows how to receive a push notification payload and parse it as a local notification. The payload consists of two properties: `message` and `gim`. The `message` property is a String generated according to a push notification template you set on the Vyin Chat Dashboard. The `gim` property is a `JSON` object which contains all the information about the message a user has sent. Within `MyFirebaseMessagingService.kotlin`, you can show the parsed messages to users as a notification using your custom [`sendNotification()`](https://github.com/firebase/quickstart-android/blob/4017aac2bdc591dc8b9702953702f09921a4e76d/messaging/app/src/main/java/com/google/firebase/quickstart/fcm/java/MyFirebaseMessagingService.java#L88) method.
+The following code shows how to receive a push notification payload and parse it as a local notification. The payload consists of two properties: `message` and `gim`. The `message` property is a String generated according to a push notification template you set on the Vyin Chat Dashboard. The `gim` property is a `JSON` object which contains all the information about the message a user has sent. Within `MyFirebaseMessagingService.kotlin`, you can show the parsed messages to users as a notification using your custom `sendNotification()` method.
 
-Note: See Firebase’s [Receive messages in an iOS app](https://firebase.google.com/docs/cloud-messaging/ios/receive) guide to learn more about how to implement code to receive and parse a [FCM notification message](https://firebase.google.com/docs/cloud-messaging/concept-options), how notification messages are handled depending on the state of the receiving app, or how to override the [`onMessageReceived`](https://firebase.google.com/docs/reference/android/com/google/firebase/messaging/FirebaseMessagingService#onMessageReceived\(com.google.firebase.messaging.RemoteMessage\)) method.  
+Note: See Firebase’s [Receive messages in an iOS app](https://firebase.google.com/docs/cloud-messaging/ios/receive) guide to learn more about how to implement code to receive and parse a [FCM notification message](https://firebase.google.com/docs/cloud-messaging/concept-options), how notification messages are handled depending on the state of the receiving app, or how to override the [`onMessageReceived`](https://firebase.google.com/docs/reference/android/com/google/firebase/messaging/FirebaseMessagingService#onMessageReceived(com.google.firebase.messaging.RemoteMessage))) method.  
 
 ```swift
 func process(_ notification: UNNotification) {
@@ -1293,44 +1293,44 @@ func process(_ notification: UNNotification) {
 
 The following is a complete payload format of the `gim` property, which contains a set of provided key-value items. Some fields in the push notification payload can be customized in Settings \> Chat \> Notifications on Vyin Chat Dashboard. For example, `push_title` and `push_alert` are created based on Title and Body text you set in Push notification content templates, respectively, in the Push notifications menu. In order to display them in a local notification, use `push_title` and `push_alert` of the push notification payload to configure the notification content in your `UNMutableNotificationContent`. Also, the `channel_unread_count` field can be added into or removed from the payload in the same menu on the Vyin Chat Dashboard.  
 
-```
+```json
 {
     "category": "messaging:offline_notification",
-    "type": String,                 // Message type: MESG, FILE, or ADMM
-    "message": String,              // User input message
-    "custom_type": String,          // Custom message type
-    "message_id": Int64,          // Message ID
-    "created_at": Int64,          // The time that the message was created, in a 13-digit Unix milliseconds format
-    "app_id": String,                // Application's unique ID
-    "unread_message_count": int,    // Total number of new messages unread by the user
+    "type": "String",                   // Message type: MESG, FILE, or ADMM
+    "message": "String",                // User input message
+    "custom_type": "String",            // Custom message type
+    "message_id": "Int64",              // Message ID
+    "created_at": "Int64",              // The time that the message was created, in a 13-digit Unix milliseconds format
+    "app_id": "String",                 // Application's unique ID
+    "unread_message_count": "int",      // Total number of new messages unread by the user
     "channel": {
-        "channel_url": String,      // Group channel URL
-        "name": String,          // Group channel name
-        "custom_type": String,       // Custom Group channel type
-        "channel_unread_count": int // Total number of unread new messages from the specific channel
+        "channel_url": "String",        // Group channel URL
+        "name": "String",              // Group channel name
+        "custom_type": "String",       // Custom Group channel type
+        "channel_unread_count": "int"  // Total number of unread new messages from the specific channel
     },
-    "channel_type": String,         // A value of channel_type is set by the system. The value of messaging indicates a distinct group channel while the value of group_messaging indicates a private group channel and chat indicates all other cases.
+    "channel_type": "String",           // messaging = distinct group channel, group_messaging = private group channel, chat = all other cases
     "sender": {
-        "id": String,                // Sender's unique ID
-        "name": String,          // Sender's nickname
-        "profile_url": String,       // Sender's profile image URL
+        "id": "String",                // Sender's unique ID
+        "name": "String",             // Sender's nickname
+        "profile_url": "String",      // Sender's profile image URL
         "require_auth_for_profile_image": false,
         "metadata": {}
     },
     "recipient": {
-        "id": String,                // Recipient's unique ID
-        "name": String              // Recipient's nickname
+        "id": "String",                // Recipient's unique ID
+        "name": "String"              // Recipient's nickname
     },
     "files": [],                        // An array of data regarding the file message, such as filename
-    "translations": {},          // The items of locale:translation
-    "push_title": String,           // Title of a notification message that can be customized on the Vyin Chat Dashboard with or without variables
-    "push_alert": String,           // Body text of a notification message that can be customized on the Vyin Chat Dashboard with or without variables
-    "push_sound": String,           // The location of a sound file for notifications
-    "audience_type": String,            // The type of audiences for notifications
+    "translations": {},                 // The items of locale:translation
+    "push_title": "String",            // Title of a notification message, customizable on Vyin Chat Dashboard
+    "push_alert": "String",            // Body text of a notification message, customizable on Vyin Chat Dashboard
+    "push_sound": "String",            // The location of a sound file for notifications
+    "audience_type": "String",          // The type of audiences for notifications
     "mentioned_users": {
-        "user_id": String,          // The ID of a mentioned user
-        "nickname": String,         // The nickname of a mentioned user
-        "profile_url": String,      // Mentioned user's profile image URL
+        "user_id": "String",           // The ID of a mentioned user
+        "nickname": "String",         // The nickname of a mentioned user
+        "profile_url": "String",      // Mentioned user's profile image URL
         "require_auth_for_profile_image": false
     }
 }
@@ -1364,8 +1364,8 @@ The Chat SDK supports the following functionalities to help monitor chat activit
 
 | Functionality | Description | Open channel | Group channel |
 | :---- | :---- | :---- | :---- |
-| Get report category info list | Get report category info list to using report api. | 🗸 | 🗸 |
-| Report a message, user, or channel | Lets users report inappropriate content. | 🗸 | 🗸 |
+| Get report category info list | Get report category info list to using report api. | ✓ | ✓ |
+| Report a message, user, or channel | Lets users report inappropriate content. | ✓ | ✓ |
 
 Note: This feature is not implemented yet\!
 
@@ -1481,6 +1481,7 @@ extension YourViewController: GroupChannelCollectionDelegate {
   public func channelCollection(_ collection: GroupChannelCollection,
                                 context: ChannelContext,
                                 deletedChannelURLs: [String]) {
+    // Handle deleted channels, e.g. remove from channel list.
   }
 
   /// Handles the event when new channels are added to the collection.
@@ -1494,7 +1495,7 @@ extension YourViewController: GroupChannelCollectionDelegate {
   public func channelCollection(_ collection: GroupChannelCollection,
                                 context: ChannelContext,
                                 addedChannels channels: [GroupChannel]) {
-
+    // Handle added channels, e.g. insert into channel list.
   }
 
   /// Handles the event when channels in the collection are updated.
@@ -1508,7 +1509,7 @@ extension YourViewController: GroupChannelCollectionDelegate {
   public func channelCollection(_ collection: GroupChannelCollection,
                                 context: ChannelContext,
                                 updatedChannels channels: [GroupChannel]) {
-
+    // Handle updated channels, e.g. refresh channel list.
   }
 }
 ```
@@ -1542,34 +1543,35 @@ self.messageCollection?.startCollection(
       initPolicy: initPolicy,
       cacheResultHandler: { [weak self] cacheResult, error in
         guard let self = self else { return }
-
+        // Handle cached messages.
       }, apiResultHandler: { [weak self] apiResult, error in
         guard let self = self else { return }
-
+        // Handle messages from server.
       })
 }
 
 extension YourViewController: MessageCollectionDelegate {
 
   public func messageCollection(_ collection: MessageCollection, context: MessageContext, channel: GroupChannel, didGetSummary message: BaseMessage) {
-
+    // Handle message summary update.
   }
 
   public func messageCollection(_ collection: ChatSDK.MessageCollection,
                                 context: ChatSDK.MessageContext,
                                 channel: ChatSDK.GroupChannel,
                                 didTranslateOnDemand message: ChatSDK.BaseMessage) {
-
+    // Handle on-demand translation result.
   }
 
   public func messageCollection(_ collection: MessageCollection, context: MessageContext, channel: GroupChannel, didAutoTranslate message: BaseMessage) {
-
+    // Handle auto-translated message.
   }
 
   public func messageCollection(_ collection: MessageCollection,
                                 context: MessageContext,
                                 channel: GroupChannel,
                                 addedMessages messages: [BaseMessage]) {
+    // Handle newly added messages.
   }
 
   public func messageCollection(
@@ -1578,7 +1580,7 @@ extension YourViewController: MessageCollectionDelegate {
     channel: GroupChannel,
     updatedMessages messages: [BaseMessage]
   ) {
-
+    // Handle updated messages.
   }
 
   public func messageCollection(
@@ -1587,7 +1589,7 @@ extension YourViewController: MessageCollectionDelegate {
     channel: GroupChannel,
     deletedMessages messages: [BaseMessage]
   ) {
-
+    // Handle deleted messages.
   }
 
   public func messageCollection(
@@ -1595,7 +1597,7 @@ extension YourViewController: MessageCollectionDelegate {
     context: MessageContext,
     updatedChannel channel: GroupChannel
   ) {
-
+    // Handle channel update.
   }
 
   public func messageCollection(
@@ -1603,11 +1605,11 @@ extension YourViewController: MessageCollectionDelegate {
     context: MessageContext,
     deletedChannel channelURL: String
   ) {
-
+    // Handle channel deletion.
   }
 
   public func didDetectHugeGap(_ collection: MessageCollection) {
-
+    // Handle huge gap detected, dispose and recreate collection.
   }
 }
 ```
@@ -1665,10 +1667,10 @@ If you wish to clear all cached data at once, use `clearCachedData()`.
 
 Data in local cache can be encrypted for data protection and security. Local caching for iOS uses Zetetic LLC's [SQLCipher](https://www.zetetic.net/sqlcipher/about/) for database encryption, which is a widely-used library for SQLite. To use the functionality, follow the instructions below.
 
-1. Add the `SQLCipher` dependency to your iOS project. To learn more, visit [SQLCipher's documentation](https://www.zetetic.net/sqlcipher/).  
-2. Set `sqlcipherConfig` to `true` during SDK initialization. The `SqlcipherConfig` class has two properties, which are `password` and `licenseCode`. `password` is a key required during encryption and decryption while `licenseCode` is required for those who are subscribing to SQLCipher's Commercial or Enterprise Edition.
+1. Add the `[SQLCipher](https://www.zetetic.net/sqlcipher/about/)` dependency to your iOS project. To learn more, visit [SQLCipher](https://www.zetetic.net/sqlcipher/about/)'s documentation.  
+2. Set `sqlcipherConfig` to `true` during SDK initialization. The `SqlcipherConfig` class has two properties, which are `password` and `licenseCode`. `password` is a key required during encryption and decryption while `licenseCode` is required for those who are subscribing to [SQLCipher](https://www.zetetic.net/sqlcipher/about/)'s Commercial or Enterprise Edition.
 
-Note: SQLCipher is an external 3rd party library and is not endorsed by Vyin Chat. You must administer your own SQLCipher license and an encryption key.
+Note: [SQLCipher](https://www.zetetic.net/sqlcipher/about/) is an external 3rd party library and is not endorsed by Vyin Chat. You must administer your own [SQLCipher](https://www.zetetic.net/sqlcipher/about/) license and an encryption key.
 
 #### Troubleshooting
 

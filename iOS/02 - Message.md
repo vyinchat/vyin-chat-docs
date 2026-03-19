@@ -44,108 +44,108 @@ Users can interact with other users in a channel by sending, receiving, replying
 
 | Functionality | Description | Open channel | Group channel |
 | :---- | :---- | :---- | :---- |
-| Send a message | Sends a text or file message to a channel. |  |  |
-| Send a critical alert message to iOS device users | Sends a critical alert notification to iOS devices even when Mute or Do Not Disturb feature is on. |  |  |
-| Send an admin message | Sends a message from an admin to a channel on the Vyin Chat Dashboard or using the Chat Platform API. |  |  |
-| Track file upload progress using a handler | Tracks the progress of a file upload. |  |  |
-| Share an encrypted file | Encrypts files and thumbnail images for secure access to users in a channel. |  |  |
-| Spam flood protection | Customizes the number of messages a user can send to a channel per second. |  |  |
-| Smart throttling | Customizes the number of messages displayed in a channel per second. |  |  |
+| Send a message | Sends a text or file message to a channel. | ✓ | ✓ |
+| Send a critical alert message to iOS device users | Sends a critical alert notification to iOS devices even when Mute or Do Not Disturb feature is on. |  | ✓ |
+| Send an admin message | Sends a message from an admin to a channel on the Vyin Chat Dashboard or using the Chat Platform API. | ✓ | ✓ |
+| Track file upload progress using a handler | Tracks the progress of a file upload. | ✓ | ✓ |
+| Share an encrypted file | Encrypts files and thumbnail images for secure access to users in a channel. | ✓ | ✓ |
+| Spam flood protection | Customizes the number of messages a user can send to a channel per second. | ✓ | ✓ |
+| Smart throttling | Customizes the number of messages displayed in a channel per second. | ✓ | ✓ |
 
 #### Receiving messages through event handler
 
 | Functionality | Description | Open channel | Group channel |
 | :---- | :---- | :---- | :---- |
-| Receive messages in a channel | Receives messages sent by other users in a channel through the channel event handler. |  |  |
+| Receive messages in a channel | Receives messages sent by other users in a channel through the channel event handler. | ✓ | ✓ |
 
 #### Using message threading
 
 | Functionality | Description | Open channel | Group channel |
 | :---- | :---- | :---- | :---- |
-| Create a message thread | Sends a reply to a specific message in a channel. This can create a message thread. |  |  |
-| List replies in a message thread | Retrieves replies to a parent message. |  |  |
+| Create a message thread | Sends a reply to a specific message in a channel. This can create a message thread. |  | ✓ |
+| List replies in a message thread | Retrieves replies to a parent message. |  | ✓ |
 
 #### Retrieving messages
 
 | Functionality | Description | Open channel | Group channel |
 | :---- | :---- | :---- | :---- |
-| Retrieve a message | Retrieves a specific message in a channel. |  |  |
-| Retrieve a list of messages | Retrieves messages in a channel. You can load a set number of previous messages or messages based on its timestamp or message ID. |  |  |
-| Retrieve the last message of a channel | Retrieves the last message in a channel. |  |  |
+| Retrieve a message | Retrieves a specific message in a channel. | ✓ | ✓ |
+| Retrieve a list of messages | Retrieves messages in a channel. You can load a set number of previous messages or messages based on its timestamp or message ID. | ✓ | ✓ |
+| Retrieve the last message of a channel | Retrieves the last message in a channel. |  | ✓ |
 
 #### Searching messages
 
 | Functionality | Description | Open channel | Group channel |
 | :---- | :---- | :---- | :---- |
-| Search messages by a keyword | Retrieves a list of messages that contain a search query or a specified keyword. |  |  |
+| Search messages by a keyword | Retrieves a list of messages that contain a search query or a specified keyword. |  | ✓ |
 
 #### Managing a message
 
 | Functionality | Description | Open channel | Group channel |
 | :---- | :---- | :---- | :---- |
-| Copy a message | Copies a message in a channel and sends it to the same channel or another channel. |  |  |
-| Update a message | Updates a text or file message in a channel. Users can only update their own messages. Operators can update any messages in the channel. |  |  |
-| Delete a message | Deletes a text or file message in a channel. Users can only delete their own messages. Operators can delete any messages in the channel. |  |  |
-| React to a message | Adds an emoji to a message. |  |  |
-| Clear the chat history in a channel | Clears the chat history from the channel view of the current user. Messages aren't deleted from the Vyin Chat system's database and other users in the channel can still view all the messages in their own channel view. |  |  |
-| Send typing indicators to other users | Indicates to other users in the channel that a user is typing up a message to the channel. |  |  |
-| Display Open Graph tags in a message | Displays a URL link preview when a message contains a web page URL. |  |  |
-| Generate thumbnails of a file message | Creates a thumbnail of an image file. |  |  |
+| Copy a message | Copies a message in a channel and sends it to the same channel or another channel. | ✓ | ✓ |
+| Update a message | Updates a text or file message in a channel. Users can only update their own messages. Operators can update any messages in the channel. | ✓ | ✓ |
+| Delete a message | Deletes a text or file message in a channel. Users can only delete their own messages. Operators can delete any messages in the channel. | ✓ | ✓ |
+| React to a message | Adds an emoji to a message. | ✓ | ✓ |
+| Clear the chat history in a channel | Clears the chat history from the channel view of the current user. Messages aren't deleted from the Vyin Chat system's database and other users in the channel can still view all the messages in their own channel view. |  | ✓ |
+| Send typing indicators to other users | Indicates to other users in the channel that a user is typing up a message to the channel. |  | ✓ |
+| Display Open Graph tags in a message | Displays a URL link preview when a message contains a web page URL. | ✓ | ✓ |
+| Generate thumbnails of a file message | Creates a thumbnail of an image file. | ✓ | ✓ |
 
 #### Listing changelogs
 
 | Functionality | Description | Open channel | Group channel |
 | :---- | :---- | :---- | :---- |
-| List changelogs of messages | Retrieves message changelogs by timestamp or token. |  |  |
+| List changelogs of messages | Retrieves message changelogs by timestamp or token. | ✓ | ✓ |
 
 #### Marking messages as read
 
 | Functionality | Description | Open channel | Group channel |
 | :---- | :---- | :---- | :---- |
-| Mark messages as read | Marks messages in a channel as read when a user enters the channel or brings the opened channel view to the foreground. |  |  |
+| Mark messages as read | Marks messages in a channel as read when a user enters the channel or brings the opened channel view to the foreground. |  | ✓ |
 
 #### Marking messages as delivered
 
 | Functionality | Description | Open channel | Group channel |
 | :---- | :---- | :---- | :---- |
-| Mark messages as delivered | Marks messages as delivered when a user who is online receives messages from the Vyin Chat server. |  |  |
+| Mark messages as delivered | Marks messages as delivered when a user who is online receives messages from the Vyin Chat server. |  | ✓ |
 
 #### Mentioning other users in a message
 
 | Functionality | Description | Open channel | Group channel |
 | :---- | :---- | :---- | :---- |
-| Mention other users in a message | Includes other users in the channel in a message. |  |  |
+| Mention other users in a message | Includes other users in the channel in a message. | ✓ | ✓ |
 
 #### Retrieving unread count
 
 | Functionality | Description | Open channel | Group channel |
 | :---- | :---- | :---- | :---- |
-| Retrieve number of unread messages in a channel | Retrieves the number of messages in a channel a user hasn't read. |  |  |
-| Retrieve number of unread messages in all channels | Retrieves the number of messages a user hasn't read in all channels they are in. |  |  |
-| Retrieve number of channels with unread messages | Retrieves the number of channels where a user hasn't read one or more messages. |  |  |
-| Retrieve number of members who haven’t received a message | Retrieves the number of users in a channel who have yet to receive a specific message. |  |  |
-| Retrieve number of members who haven’t read a message | Retrieves the number of users in a channel who haven't read a specific message. |  |  |
+| Retrieve number of unread messages in a channel | Retrieves the number of messages in a channel a user hasn't read. |  | ✓ |
+| Retrieve number of unread messages in all channels | Retrieves the number of messages a user hasn't read in all channels they are in. |  | ✓ |
+| Retrieve number of channels with unread messages | Retrieves the number of channels where a user hasn't read one or more messages. |  | ✓ |
+| Retrieve number of members who haven’t received a message | Retrieves the number of users in a channel who have yet to receive a specific message. |  | ✓ |
+| Retrieve number of members who haven’t read a message | Retrieves the number of users in a channel who haven't read a specific message. |  | ✓ |
 
 #### Categorizing messages
 
 | Functionality | Description | Open channel | Group channel |
 | :---- | :---- | :---- | :---- |
-| Categorize messages by custom type | Specifies a custom message type to search or filter messages by. |  |  |
+| Categorize messages by custom type | Specifies a custom message type to search or filter messages by. | ✓ | ✓ |
 
 #### Translating messages
 
 | Functionality | Description | Open channel | Group channel |
 | :---- | :---- | :---- | :---- |
-| Auto-translate messages | Translates messages into specified languages and sends to channel. |  |  |
-| Translation engine | Vyin Chat’s message auto-translation and on-demand features are powered by Google Cloud Translation API's recognition engine. The recognition engine supports a wide variety of languages for the Neural Machine Translation (NMT) model. |  |  |
+| Auto-translate messages | Translates messages into specified languages and sends to channel. | ✓ | ✓ |
+| Translation engine | Vyin Chat’s message auto-translation and on-demand features are powered by Google Cloud Translation API's recognition engine. The recognition engine supports a wide variety of languages for the Neural Machine Translation (NMT) model. | ✓ | ✓ |
 
 #### AI Summary messages
 
 
 | Functionality | Description | Open channel | Group channel |
 | :---- | :---- | :---- | :---- |
-| Config setting for summary message | Implement a configuration setting that controls the “summary message” feature. This setting retrieves the current configuration value to determine whether the summary message feature should be enabled or disabled dynamically, allowing toggling the feature |  |  |
-| Get summary messages | Retrieves the summary messages in a channel that have not been read by the user. |  |  |
+| Config setting for summary message | Implement a configuration setting that controls the “summary message” feature. This setting retrieves the current configuration value to determine whether the summary message feature should be enabled or disabled dynamically, allowing toggling the feature |  | ✓ |
+| Get summary messages | Retrieves the summary messages in a channel that have not been read by the user. |  | ✓ |
 
 ## Sending a message
 
@@ -271,10 +271,12 @@ open func sendFileMessage(messageParams: FileMessageCreateParams, parentMessage:
       },
       completionHandler: { [weak self] fileMessage, error in
         if let error = error {
-
+            // Handle error.
         } else {
+            // Handle success.
         }
       }) { [weak self] preSendMessage in
+        // Handle pre-send message.
   }
 ```
 
@@ -294,8 +296,6 @@ Note: To learn more about how to set critical alerts, visit Apple critical alert
 
 ```swift
 // Send a critical alert user message.
-```
-```swift
 let text = text.trimmingCharacters(in: .whitespacesAndNewlines)
 let messageParams = UserMessageCreateParams(message: text)
 
@@ -386,10 +386,12 @@ open func sendFileMessage(messageParams: FileMessageCreateParams, parentMessage:
       },
       completionHandler: { [weak self] fileMessage, error in
         if let error = error {
-
+            // Handle error.
         } else {
+            // Handle success.
         }
       }) { [weak self] preSendMessage in
+        // Handle pre-send message.
   }
 ```
 
@@ -434,42 +436,39 @@ let messageParams = FileMessageCreateParams(file: fileData, fileName: fileName, 
       messageParams.parentMessageId = parentMessage.messageId
       messageParams.isReplyToChannel = true
     }
+
+    let fileName = messageParams.fileName
+
+    if VYINUUtils.getFileType(by: messageParams.mimeType) == .voice {
+        let extensiontype = URL(fileURLWithPath: fileName).pathExtension
+        if extensiontype.count > 0 {
+            messageParams.fileName = "Voice_message.\(extensiontype)"
+        } else {
+            messageParams.fileName = "Voice_message"
+        }
+    }
+
+    var createdRequestId: String?
+
+    channel.sendFileMessage(
+    params: messageParams,
+    progressHandler: { requestId, _, totalBytesSent, totalBytesExpectedToSend in
+        // If need reload cell for progress, call reload action in here.
+        guard let requestId = requestId, !requestId.isEmpty else { return }
+        let fileTransferProgress = CGFloat(totalBytesSent) / CGFloat(totalBytesExpectedToSend)
+    },
+    completionHandler: { [weak self] fileMessage, error in
+        if let error = error {
+            // Handle error.
+        } else {
+            // Handle success.
+        }
+    }) { [weak self] preSendMessage in
+        // Handle pre-send message.
+    }
+
+    createdRequestId = preSendMessage?.requestId
 ```
-
-```swift
-let fileName = messageParams.fileName
-
-if VYINUUtils.getFileType(by: messageParams.mimeType) == .voice {
-let extensiontype = URL(fileURLWithPath: fileName).pathExtension
-if extensiontype.count > 0 {
-messageParams.fileName = "Voice\_message.\(extensiontype)"
-} else {
-messageParams.fileName = "Voice\_message"
-}
-}
-
-var createdRequestId: String?
-```
-
-    channel.sendFileMessage(  
-      params: messageParams,  
-      progressHandler: { requestId, \_, totalBytesSent, totalBytesExpectedToSend **in**  
-        //// If need reload cell for progress, call reload action in here.  
-```swift
-guard let requestId = requestId, \!requestId.isEmpty else { return }
-let fileTransferProgress = CGFloat(totalBytesSent)/CGFloat(totalBytesExpectedToSend)
-},
-completionHandler: { [weak self] fileMessage, error in
-if let error = error {
-
-} else {
-
-}
-}) { [weak self] preSendMessage in
-```
-
-createdRequestId \= presendMessage?.requestId  
-      }
 
 ## Cancel an in-progress file upload
 
@@ -533,20 +532,17 @@ GIMChat.removeChannelDelegate(forIdentifier: String)
 Once a reply is created or deleted from a thread, the `didUpdateThreadInfo()` event handler is invoked. The method returns a `ThreadInfoUpdateEvent` object that has the latest information about the thread. This object needs to be applied to the parent message object.
 
 Note: Like other messages, when a reply is created in a channel, the `didUpdateThreadInfo()` method of the channel event handler in client apps is called.  
-```swift
-open override func channel(\_ channel: BaseChannel,
-```
 
-                               didUpdateThreadInfo threadInfoUpdateEvent: ThreadInfoUpdateEvent) {  
 ```swift
-if self.parentMessage?.messageId == threadInfoUpdateEvent.targetMessageId {
-self.parentMessage?.apply(threadInfoUpdateEvent)
-if let parentMessage = self.parentMessage {
-self.delegate?.messageThreadViewModel(self, didUpdateParentMessage: parentMessage)
+open override func channel(_ channel: BaseChannel,
+                           didUpdateThreadInfo threadInfoUpdateEvent: ThreadInfoUpdateEvent) {
+    if self.parentMessage?.messageId == threadInfoUpdateEvent.targetMessageId {
+        self.parentMessage?.apply(threadInfoUpdateEvent)
+        if let parentMessage = self.parentMessage {
+            self.delegate?.messageThreadViewModel(self, didUpdateParentMessage: parentMessage)
+        }
+    }
 }
-}
-}
-
 ```
 
 #### List of parameters
@@ -653,10 +649,10 @@ let messageParams = UserMessageCreateParams(message: text)
     }
 
 // Pass the params to the parameter of the sendUserMessage() method.
-```
-channel?.sendUserMessage(params: messageParams) { \[**weak** **self**\] userMessage, error **in**
+channel?.sendUserMessage(params: messageParams) { [weak self] userMessage, error in
 
- }
+}
+```
 
 #### UserMessageCreateParams
 
@@ -733,16 +729,12 @@ When a reply is created in a channel, the
 `open override func channel(_ channel: BaseChannel, didReceive message: BaseMessage)` and   
 `func channel(_ channel: BaseChannel, didUpdateThreadInfo threadInfoUpdateEvent: ThreadInfoUpdateEvent)()` methods of the channel event handler in client apps are called. When a reply is deleted from a thread, the `onThreadInfoUpdated()` event handler is invoked. In both cases, `onThreadInfoUpdated()` takes a `ThreadInfoUpdateEvent` object as an argument that has the latest information about the thread. Apply the object to the parent message object through the `parentMessage.applyThreadInfoUpdateEvent()` method.  
 ```swift
-open override func channel(\_ channel: BaseChannel,
-```
-
-                               didUpdateThreadInfo threadInfoUpdateEvent: ThreadInfoUpdateEvent) {  
-```swift
-if self.parentMessage?.messageId == threadInfoUpdateEvent.targetMessageId {
-self.parentMessage?.apply(threadInfoUpdateEvent)
+open override func channel(_ channel: BaseChannel,
+                           didUpdateThreadInfo threadInfoUpdateEvent: ThreadInfoUpdateEvent) {
+    if self.parentMessage?.messageId == threadInfoUpdateEvent.targetMessageId {
+        self.parentMessage?.apply(threadInfoUpdateEvent)
+    }
 }
-}
-
 ```
 
 #### List of parameters
@@ -758,22 +750,17 @@ You can retrieve replies to a message by identifying the parent message like the
 
 ```swift
 // Create a ThreadMessageListParams object.
-```
-```swift
 let params = (self.threadedMessageListParams.copy() as? ThreadedMessageListParams) ?? ThreadedMessageListParams()
-```
 
-        params.previousResultSize \= 0  
-```swift
+params.previousResultSize = 0
 if params.nextResultSize == 0 {
-params.nextResultSize = self.defaultFetchLimit
-params.includeReactions = true
-params.includeParentMessageInfo = true
-params.includeThreadInfo = true
+    params.nextResultSize = self.defaultFetchLimit
+    params.includeReactions = true
+    params.includeParentMessageInfo = true
+    params.includeThreadInfo = true
+    params.includeReplyType = "ALL"
+}
 ```
-
-            params.includeReplyType \= "ALL"  
-        }
 
 ### ThreadMessageListParams
 
@@ -961,28 +948,22 @@ You can retrieve a specific message in an open or group channel by creating and 
 
 ```swift
 // Create a MessageRetrievalParams object.
-```
-```swift
 let params = MessageRetrievalParams()
-```
+params.messageId = parentMessageId
+params.channelType = .group
+params.channelURL = channelURL
+params.includeThreadInfo = true
+params.includeReactions = true
+params.includeMetaArray = true
 
-        params.messageId \= parentMessageId  
-        params.channelType \= .group  
-        params.channelURL \= channelURL  
-        params.includeThreadInfo \= **true**  
-        params.includeReactions \= **true**  
-        params.includeMetaArray \= **true**  
-          
-        BaseMessage.getMessage(params: params) { (message, error) **in**  
-```swift
-guard error == nil else {
-completionHandler?(nil, error)
-return
+BaseMessage.getMessage(params: params) { (message, error) in
+    guard error == nil else {
+        completionHandler?(nil, error)
+        return
+    }
+
+    completionHandler?(message, nil)
 }
-
-completionHandler?(message, nil)
-}
-
 ```
 
 ### List of properties
@@ -1035,27 +1016,24 @@ You can create the query instance in two ways. First, you can do so with the def
         let query = GIMChat.createMessageSearchQuery(params: params)
 ```
 
-Then, the query retrieves a list of match results. Calling the `next()` method returns the next page of the results.  
-query.loadNextPage { \[**weak** **self**\] messageList, error **in**  
-```swift
-guard let self = self else { return }
-self.presenter?.shouldUpdateLoadingState(false)
-if let error = error {
-```
+Then, the query retrieves a list of match results. Calling the `next()` method returns the next page of the results.
 
-                presenter?.didSearchResultError(error: error)  
-            } **else** {  
 ```swift
-guard let messageList = messageList else { return }
-let filteredList = messageList.filter { message in
-return VYINUUtils.findIndex(of: message, in: self.searchResultList) == nil
+query.loadNextPage { [weak self] messageList, error in
+    guard let self = self else { return }
+    self.presenter?.shouldUpdateLoadingState(false)
+    if let error = error {
+        presenter?.didSearchResultError(error: error)
+    } else {
+        guard let messageList = messageList else { return }
+        let filteredList = messageList.filter { message in
+            return VYINUUtils.findIndex(of: message, in: self.searchResultList) == nil
+        }
+        self.searchResultList.append(contentsOf: filteredList)
+        self.presenter?.didChangeSearchResults(needsToReload: true)
+    }
 }
 ```
-
-                self.searchResultList.append(contentsOf: filteredList)  
-                self.presenter?.didChangeSearchResults(needsToReload: **true**)  
-            }  
-        }
 
 Use the `hasNext` method to see if there is a next page.  
 
@@ -1336,10 +1314,9 @@ openChannel.sendUserMessage(params) { message, e in
 }
 
 // Receive a user message containing OG metadata of the web page through a channel event handler.
-```
-```swift
-public func channel(\_ channel: BaseChannel, didReceive message: BaseMessage) { }
-
+public func channel(_ channel: BaseChannel, didReceive message: BaseMessage) {
+    // Handle received message with OG metadata.
+}
 ```
 
 #### Group channel
@@ -1356,11 +1333,9 @@ groupChannel.sendUserMessage(params) { message, e in
 }
 
 // Receive a user message containing OG metadata of the web page through a channel event handler.
-```
-
-```swift
-public func channel(\_ channel: BaseChannel, didReceive message: BaseMessage) { }
-
+public func channel(_ channel: BaseChannel, didReceive message: BaseMessage) {
+    // Handle received message with OG metadata.
+}
 ```
 
 ## Generate thumbnails of a file message
@@ -1788,6 +1763,7 @@ groupChannel.markAsRead()
 // To listen to an update from other channel members' client apps,
 // implement onReadStatusUpdated() with actions to perform when notified.
 public func channelDidUpdateDeliveryStatus(_ channel: GroupChannel) {
+    // Refresh the channel view to display updated delivery status.
 }
 ```
 ---
@@ -2156,7 +2132,7 @@ channel.addPollOption(pollId, "optionText") { poll, e in
     }
 
     if (poll != nil) {
-
+        // Poll option added successfully.
     }
 }
 ```
@@ -2519,22 +2495,16 @@ To show the translated messages, use the `userMessage.translations` method which
 ### Open channel
 
 ```swift
-public func channel(\_ channel: BaseChannel, didAutoTranslate message: BaseMessage) {
-
-```
-
-```swift
+public func channel(_ channel: BaseChannel, didAutoTranslate message: BaseMessage) {
+    // Handle auto-translated message.
 }
 ```
 
 #### Group channel
 
 ```swift
-public func channel(\_ channel: BaseChannel, didAutoTranslate message: BaseMessage) {
-
-```
-
-```swift
+public func channel(_ channel: BaseChannel, didAutoTranslate message: BaseMessage) {
+    // Handle auto-translated message.
 }
 ```
 
@@ -2657,7 +2627,6 @@ GIMChat.updateConverstationSummarySetting(isEnabled: true/false)
 | Parameter name | Type | Description |
 | :---- | :---- | :---- |
 | isEnable | Bool | A flag that determines whether the summary feature is turned on (`true`) or off (`false`). |
-|  |  |  |
 
  
 ## Retrieve a summary message
@@ -2668,7 +2637,7 @@ GIMChat.updateConverstationSummarySetting(isEnabled: true/false)
 | :---- | :---- | :---- | :---- |
 | **Criteria** | **Description** | **ABLE to trigger summary if** | **NO NEED to trigger if** |
 | User Absence Duration  | How long the user has been offline/inactive in a specific group | The user's absence duration is between **2 hours and 2 days**. *(This is a good window for users to catch up.)* | The user's absence duration is **less than 2 hours** *(The user is still fresh and can easily catch up manually.)* The user's absence duration is **more than 2 days** (*The conversation might be too large to summarize effectively, so skip.)* |
-| Unread message | All of the below criteria relate to unread messages |  |  |
+| Unread message | All of the below criteria relate to unread messages |  | ✓ |
 | Conversation Type | Detect whether the recent conversation is meaningful enough for summarization, or just casual chatting (emojis, short replies, media flood, etc.) | Conversation has **≤ 70%** emoji/sticker-only messages. AND **≤ 70%** short messages (message has **≥ 5 words** or **≥ 20 characters**). AND **≤ 60%** casual keywords (such as "ok", "lol", "haha", "yes", "kk", "👍", "😂"). **AND** the conversation is **not dominated by file/media sharing**, specifically: There must be at least 10 real text messages,  AND The number of media files (images, videos, attachments) must not exceed the number of text messages. | \> 70% of unread messages are emojis, stickers, or GIFs only OR \> 70% of unread messages are very short (under 5 words or 20 characters). OR \> 60% of unread messages contain casual chatting keywords. OR Conversation mainly contains file/media sharing with minimal text content. |
 | Number of Unread Messages and Number of Unread Characters | Count the number of unread messages and the total number of characters from a local user in a specific group. | The user has **≥ 30 unread messages** in that group,  **OR** The user has **≥ 3000 unread characters** in that group. *(These thresholds typically indicate a significant amount of information, making it hard for users to catch up manually.)* | The user has **fewer than 30 unread messages** **AND** **fewer than 3000 unread characters**.*(In this case, there is little information, and users can catch up manually.)* |
 | Number of Participants | Tracks the number of unique participants in the group during the user's absence | The number of **unique participants ≥ 3** | The number of participants is **≤ 2** (likely a one-on-one chat, which is easy for the user to catch up on) |
