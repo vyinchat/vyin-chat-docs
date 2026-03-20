@@ -25,3 +25,7 @@
 - [Local Caching](iOS/08%20-%20Local%20Caching.md)
 - [Error Codes](iOS/09%20-%20Error%20Codes.md)
 - [Logger](iOS/10%20-%20Logger.md)
+
+## Chat Widget
+
+- [Get Started](./Chat%20Widget/01%20-%20Get%20Started.md)
