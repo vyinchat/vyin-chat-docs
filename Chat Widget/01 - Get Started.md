@@ -38,31 +38,31 @@ GIMBotTool.init({
 
 ### **Add to the Website via a Code Snippet**
 
-1\. Log in to the Console Backend  
-![][image1]
+1\. Log in to the [Console Backend](https://console.vyin.chat/)  
+![](./assets/login-to-console-backend.jpg)
 
 2\. Select the Organization  
-![][image2]
+![](./assets/select-the-organization.jpg)
 
 3\. Select the Application  
-![][image3]
+![](./assets/select-the-application.jpg)
 
 4\. Navigate to the Side Menu  
-![][image4]
+![](./assets/navigate-to-the-side-menu.jpg)
 
 5\. Go to Bot Management \> **Bot Profile**  
-![][image5]
+![](./assets/go-to-bot-management-bot-profile.jpg)
 
 6\. Click the **Add to website \+** button  
-![][image6]
+![](./assets/click-the-add-to-website-button.jpg)
 
 7\. Next, click the **Copy code** button  
-![][image7]
+![](./assets/next-click-the-copy-code-button.jpg)
 
-8\. Paste the copied code into your website's source code before the \</body\> tag
+8\. Paste the copied code into your website's source code before the `</body\>` tag
 
 9\. Once you have successfully added the code to your website, please refresh the page. After the widget loads, you will see it appear in the bottom-right corner of your website.  
-![][image8]
+![](./assets/successfully-added.jpg)
 
 # API Interface
 
