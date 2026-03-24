@@ -1,31 +1,35 @@
 # Vyin Chat SDK Documentation
 
-## Android
+## SDK
 
-- [Get Started](Android/01-get-started.md)
-- [User](Android/02-user.md)
-- [Channel](Android/03-channel.md)
-- [Message](Android/04-message.md)
-- [Application](Android/05-application.md)
-- [Event Handler](Android/06-event-handler.md)
-- [Push Notifications](Android/07-push-notifications.md)
-- [Local Caching](Android/08-local-caching.md)
-- [Error Codes](Android/09-error-codes.md)
-- [Logger](Android/10-logger.md)
+### Android
 
-## iOS
+- [Get Started](sdk/android/01-get-started.md)
+- [User](sdk/android/02-user.md)
+- [Channel](sdk/android/03-channel.md)
+- [Message](sdk/android/04-message.md)
+- [Application](sdk/android/05-application.md)
+- [Event Handler](sdk/android/06-event-handler.md)
+- [Push Notifications](sdk/android/07-push-notifications.md)
+- [Local Caching](sdk/android/08-local-caching.md)
+- [Error Codes](sdk/android/09-error-codes.md)
+- [Logger](sdk/android/10-logger.md)
 
-- [Get Started](iOS/01-get-started.md)
-- [User](iOS/02-user.md)
-- [Channel](iOS/03-channel.md)
-- [Message](iOS/04-message.md)
-- [Application](iOS/05-application.md)
-- [Event Handler](iOS/06-event-handler.md)
-- [Push Notifications](iOS/07-push-notifications.md)
-- [Local Caching](iOS/08-local-caching.md)
-- [Error Codes](iOS/09-error-codes.md)
-- [Logger](iOS/10-logger.md)
+### iOS
 
-## Chat Widget
+- [Get Started](sdk/ios/01-get-started.md)
+- [User](sdk/ios/02-user.md)
+- [Channel](sdk/ios/03-channel.md)
+- [Message](sdk/ios/04-message.md)
+- [Application](sdk/ios/05-application.md)
+- [Event Handler](sdk/ios/06-event-handler.md)
+- [Push Notifications](sdk/ios/07-push-notifications.md)
+- [Local Caching](sdk/ios/08-local-caching.md)
+- [Error Codes](sdk/ios/09-error-codes.md)
+- [Logger](sdk/ios/10-logger.md)
 
-- [Get Started](chat-widget/01-get-started.md)
+## Widget
+
+### Chat Widget
+
+- [Get Started](widget/chat-widget/01-get-started.md)
