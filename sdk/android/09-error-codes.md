@@ -18,7 +18,6 @@ The following are errors labeled with six-digit integers beginning with 800 that
 | `ERR_INVALID_INITIALIZATION` | 800100 | This error occurs when the GIMChat initialization fails. This could be due to an invalid APP_ID or repeated initialization attempts. |
 | `ERR_CONNECTION_REQUIRED` | 800101 | The request from a client app failed because the device wasn't connected to the server. |
 | `ERR_CONNECTION_CANCELED` | 800102 | The connection is canceled or the disconnecting method is called while the `GIMChat` instance is trying to connect to the server. |
-| `ERR_INITIALIZATION_CANCELED` | 800103 | This error is triggered if the SDK initialization exceeds five seconds. It's a safeguard to avoid app unresponsiveness (ANR). Retrying initialization might work. |
 | `ERR_INVALID_PARAMETER` | 800110 | The parameter of the method specifies an invalid value. |
 | `ERR_NETWORK` | 800120 | The connection failed due to the unstable network or an unexpected error in the Chat SDK network library. |
 | `ERR_NETWORK_ROUTING_ERROR` | 800121 | The request routing to the server failed. |
@@ -34,6 +33,13 @@ The following are errors labeled with six-digit integers beginning with 800 that
 | `ERR_REQUEST_FAILED` | 800220 | The server failed to process the request due to an internal reason. |
 | `ERR_FILE_UPLOAD_CANCEL_FAILED` | 800230 | The request to cancel file upload failed due to an unexpected error. |
 | `ERR_FILE_UPLOAD_CANCELED` | 800240 | The file upload request is canceled. |
+| `ERR_FILE_UPLOAD_TIMEOUT` | 800250 | The file upload request timed out before the server confirmed completion. Retry the upload or check network stability. |
+| `ERR_FILE_SIZE_LIMIT_EXCEEDED` | 800260 | The file size exceeds the maximum allowed limit. Reduce the file size before uploading. |
+| `ERR_PENDING` | 800400 | The operation is pending and hasn't been processed yet. |
+| `ERR_PARSED_INVALID_ACCESS_TOKEN` | 800500 | The access token could not be parsed because it specifies an invalid value. |
+| `ERR_SESSION_KEY_REFRESH_SUCCEEDED` | 800501 | The session key was successfully refreshed. This is an informational code, not an error. |
+| `ERR_SESSION_KEY_REFRESH_FAILED` | 800502 | The session key refresh failed. Re-authenticate the user to obtain a new session key. |
+| `ERR_COLLECTION_DISPOSED` | 800600 | The collection object has been disposed and can no longer be used. Re-initialize the collection before performing further operations. |
 | `ERR_DATABASE_ERROR` | 800700 | Something went wrong with the database. While the SDK continues to operate, local caching is disabled. |
 
 ---
@@ -51,6 +57,7 @@ The following errors are six-digit integers beginning with 400, 500, and 900.
 | `400104 (bad request)` | UNEXPECTED_PARAMETER_TYPE — The request specifies one or more parameters in an unexpected data type. The data type of the parameters should be `boolean`. |
 | `400105 (bad request)` | MISSING_REQUIRED_PARAMETERS — The request is missing one or more required parameters. |
 | `400106 (bad request)` | NEGATIVE_NUMBER_NOT_ALLOWED — The parameter specifies a negative number. Its value should be a positive number. |
+| `400107 (bad request)` | INVALID_PARAMETER_VALUE_NEGATIVE — The parameter specifies a negative number where only positive values are accepted. |
 | `400108 (bad request)` | UNAUTHORIZED_REQUEST — The request isn't authorized and can't access the requested resource. |
 | `400109 (bad request)` | EXPIRED_PAGE_TOKEN — The value of the `token` parameter for pagination has expired. |
 | `400110 (bad request)` | PARAMETER_VALUE_LENGTH_EXCEEDED — The length of the parameter value is too long. |
@@ -68,6 +75,8 @@ The following errors are six-digit integers beginning with 400, 500, and 900.
 | `400303 (bad request)` | INVALID_SESSION_KEY_VALUE — The session key provided for the request specifies an invalid value. |
 | `400304 (bad request)` | APPLICATION_NOT_FOUND — The application identified with the request can't be found. |
 | `400305 (bad request)` | USER_ID_LENGTH_EXCEEDED — The length of the `USER_ID` is too long. |
+| `400309 (bad request)` | SESSION_KEY_EXPIRED — The session key provided for the request has expired. Re-authenticate the user to obtain a new session key. |
+| `400310 (bad request)` | SESSION_TOKEN_REVOKED — The session token has been revoked and is no longer valid. Re-authenticate the user to obtain a new token. |
 | `400306 (bad request)` | PAID_QUOTA_EXCEEDED — The request can't be completed because you have exceeded your paid quota. |
 | `400307 (bad request)` | DOMAIN_NOT_ALLOWED — The request can't be completed because it came from the restricted domain. |
 | `400401 (bad request)` | INVALID_API_TOKEN — The API token provided for the request specifies an invalid value. |
@@ -116,3 +125,4 @@ The following errors are six-digit integers beginning with 400, 500, and 900.
 | `900300 (request failed)` | MESSAGE_NOT_FOUND — The request failed because the message to edit can't be retrieved. |
 | `900400 (request failed)` | TOO_MANY_PARTICIPANTS — The number of the channel's participants exceeds the allowed amount. |
 | `900500 (request failed)` | CHANNEL_NOT_FOUND — The request failed because there is no channel to perform this operation. |
+| `900800 (request failed)` | NOT_OPERATOR — The request failed because the user doesn't have operator-level permissions required for this operation. |
