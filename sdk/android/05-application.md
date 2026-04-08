@@ -83,47 +83,151 @@ For Chat SDKs that don't use local caching, the connection process remains the s
 
 You can also use a session token instead of an access token to authenticate a user. Session tokens are a more secure option because they expire after a certain period whereas access tokens don't. See the Chat Platform API guides for further explanation about the difference between access tokens and session tokens, how to issue a session token, and how to revoke all session tokens.
 
-## Set a session handler
+## Session management
 
-When a user is authenticated with a session token, the Chat SDK connects the user to the Vyin Chat server and can send data requests to the server for ten minutes as long as the session token hasn't expired or hasn't been revoked.
+The GIM SDK manages session keys internally and automatically handles token refresh in most cases. This section explains how the session mechanism works, what the SDK handles for you, and what your app needs to implement.
 
-Upon the user's session expiration, the Chat SDK will refresh the session internally using a `SessionHandler`. However, if the session token has expired or has been revoked, the Chat SDK can't do so. In that case, the client app needs to implement a `SessionHandler` instance to refresh the token and pass it back to the SDK so that it can refresh the session again.
+### Overview
 
-> **Note:** A `SessionHandler` instance must be set before the server connection is requested.
+When a user connects to the GIM Chat server, the SDK exchanges the user's **access token** (issued by your App Backend) for an internal **session key** managed by GIM. The session key has a limited lifetime. When it expires, the SDK automatically requests a new access token from your app and renews the session key — without interrupting the user experience.
 
-The following code shows how to implement the handler methods.
+### How session renewal works
+
+The SDK detects session expiry from three sources:
+
+| Trigger | When it occurs |
+|---|---|
+| HTTP API response | A REST API call returns an expiry error (e.g. `400309`) |
+| WebSocket `EXPR` event | Server pushes a session expiry notification while connected |
+| LOGI failure on reconnect | Session expired while the app was offline or backgrounded |
+
+In all three cases, the SDK automatically starts the refresh flow and retries the original operation after a new session key is obtained. **Your app does not need to call `connect()` again.**
+
+### Setting up SessionHandler
+
+Register a `SessionHandler` before calling `connect()`. The SDK calls this handler whenever it needs a new access token.
 
 ```kotlin
-GIMChat.setSessionHandler(
-    object : SessionHandler() {
-        override fun onSessionTokenRequired(sessionTokenRequester: SessionTokenRequester) {
-            // A new session token is required in the SDK to refresh the session.
-            // Refresh the session token and pass it onto the SDK through sessionTokenRequester.onSuccess(NEW_TOKEN).
-            // If you do not want to refresh the session, pass on a null value through sessionTokenRequester.onSuccess(null).
-            // If any error occurred while refreshing the token, let the SDK know about it through sessionTokenRequester.onFail().
-        }
+GIMChat.setSessionHandler(object : SessionHandler() {
 
-        override fun onSessionClosed() {
-            // The session refresh has been denied from the app.
-            // Client apps should guide the user to a login page to log in again.
-        }
-
-        override fun onSessionRefreshed() {
-            // This is optional and no action is required.
-            // This is called when the session is refreshed.
-        }
-
-        override fun onSessionError(exception: GIMException) {
-            // This is optional and no action is required.
-            // This is called when an error occurs during the session refresh.
+    override fun onSessionTokenRequired(sessionTokenRequester: SessionTokenRequester) {
+        // Fetch a new access token from your App Backend.
+        yourAppBackend.getAccessToken { newToken, error ->
+            if (error != null) {
+                // Failed to get a token — tell the SDK to stop retrying.
+                sessionTokenRequester.onFail()
+            } else {
+                // Provide the new access token to the SDK.
+                sessionTokenRequester.onSuccess(newToken)
+            }
         }
     }
-)
+
+    override fun onSessionClosed() {
+        // The session has been permanently revoked and cannot be recovered.
+        // Navigate the user to the login screen.
+        navigateToLogin()
+    }
+})
 ```
 
-When `SessionHandler.onSessionTokenRequired(SessionTokenRequester)` is invoked, the SDK waits for a specific amount of time to receive a new session token from the client app.
+Call `setSessionHandler()` **before** `connect()` to ensure no token request is missed.
 
-If neither `SessionTokenRequester.onSuccess()` nor `SessionTokenRequester.onFail()` are called within the specified timeout period, the socket connection will be disconnected. If this occurs, the client app has to manually call `GIMChat.connect(USER_ID, AUTH_TOKEN)` for a new socket connection.
+### SessionHandler callbacks
+
+#### `onSessionTokenRequired(sessionTokenRequester)`
+
+Called when the SDK needs a new access token to renew the session key. Your app must fetch a fresh token from your App Backend and respond using the `SessionTokenRequester`:
+
+| Method | Description |
+|---|---|
+| `sessionTokenRequester.onSuccess(newToken)` | Provide the new access token |
+| `sessionTokenRequester.onFail()` | Decline the refresh (SDK will stop retrying) |
+
+> **Timeout:** The SDK waits up to **10 seconds** for a response. If neither `onSuccess()` nor `onFail()` is called within this window, the SDK treats it as a failure.
+
+> **Retry limit:** The SDK retries up to **3 times** before giving up and calling `onSessionClosed()`.
+
+#### `onSessionClosed()`
+
+Called when the session is permanently revoked (error `400310`) or when all retry attempts have been exhausted. This is not recoverable — your app should clear local credentials and redirect the user to sign in again.
+
+#### `onSessionRefreshed()` *(optional)*
+
+Called after the SDK has successfully renewed the session key. You can use this callback for logging or telemetry.
+
+#### `onSessionError(exception: GIMException)` *(optional)*
+
+Called when an error occurs during the session refresh process. Useful for debugging.
+
+### Full interaction flow
+
+The following diagram shows the complete session renewal flow across your App, the SDK, GIM Backend, and App Backend:
+
+```
+   App              SDK              GIM BE         App BE
+    │                │                  │               │
+    │  connect()     │                  │               │
+    │───────────────►│                  │               │
+    │                │──── LOGI ───────►│               │
+    │                │◄─── session key ─│               │
+    │                │                  │               │
+    │           ... time passes, session key expires ... │
+    │                │                  │               │
+    │                │──── API call ───►│               │
+    │                │◄── 400309 error ─│               │
+    │                │                  │               │
+    │◄───────────────│ onSessionTokenRequired()          │
+    │                │                  │               │
+    │───────────────────────────────────────────────────►│
+    │◄─────────────────────────────────── new token ─────│
+    │                │                  │               │
+    │────────────────► onSuccess(newToken)               │
+    │                │                  │               │
+    │                │──── LOGI (new token) ───────────►│               │
+    │                │◄─── new session key ─────────────│               │
+    │                │                  │               │
+    │                │──── retry API call ────────────►│               │
+    │                │◄─── success ────────────────────│               │
+```
+
+**Offline / background scenario**
+
+If the app goes offline before receiving the `EXPR` event, the session key may have already expired when the app returns to the foreground. The SDK handles this automatically:
+
+1. SDK reconnect loop sends LOGI
+2. GIM BE returns session expiry error
+3. SDK calls `onSessionTokenRequired()` — same flow as above
+4. After receiving a new token, SDK retries LOGI and reconnects
+
+Your app does not need to detect or handle this case separately.
+
+### App Backend responsibilities
+
+Your App Backend is responsible for:
+
+1. **Issuing access tokens** — Generate a short-lived access token for each user upon request.
+2. **Token endpoint** — Expose an endpoint that the App can call from `onSessionTokenRequired()`.
+
+> **Recommendation:** Cache a valid token in memory on the App side so that `onSessionTokenRequired()` can respond immediately without a network round-trip. This reduces the risk of hitting the 10-second timeout.
+
+### Session error codes
+
+| Code | Name | Description |
+|---|---|---|
+| `400302` | `ERR_INVALID_ACCESS_TOKEN` | The access token provided is invalid |
+| `400309` | `ERR_SESSION_KEY_EXPIRED` | The session key has expired |
+| `400310` | `ERR_SESSION_TOKEN_REVOKED` | The session has been permanently revoked |
+| `800502` | `ERR_SESSION_KEY_REFRESH_FAILED` | Client-side session refresh failure |
+
+### Best practices
+
+- **Set `SessionHandler` before `connect()`** to avoid missing any token requests during the initial handshake.
+- **Cache the access token** in your App so `onSessionTokenRequired()` can respond within the 10-second window without a network round-trip.
+- **Do not call any SDK methods** inside `onSessionTokenRequired()`. The SDK is in a suspended state during this callback, and making SDK calls can cause a deadlock.
+- **Always implement `onSessionClosed()`** to handle the revoked session case. Without this, the user may be stuck in a broken state with no path to recovery.
+- **Use `onSessionError()` for logging** to help diagnose token refresh failures in production.
+- **Use `authToken` in `connect()`** for authenticated users. Guest connections cannot recover from session expiry automatically.
 
 ## Disconnect from the Vyin Chat server
 
